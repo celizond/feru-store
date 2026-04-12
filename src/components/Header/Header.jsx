@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+import { CrossIcon, HeartIcon, MenuIcon, ShoppingCartIcon } from "../../assets/icons";
 import "./Header.css";
-import { HeartIcon, MenuIcon, ShoppingCartIcon } from "../../assets/icons";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    if (!openMenu) return;
+    const handleOutsideClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [openMenu]);
 
   return (
     <header className="header">
@@ -14,7 +26,22 @@ const Header = () => {
         <div className="header-functions">
           <HeartIcon />
           <ShoppingCartIcon />
-          <MenuIcon />
+          <div className="menu-wrap" ref={menuRef}>
+            <button className="menu-btn" onClick={() => setOpenMenu(!openMenu)} aria-label="Menú">
+              {openMenu ? <CrossIcon /> : <MenuIcon />}
+            </button>
+            {openMenu && (
+              <nav className="dropdown">
+                <ul>
+                  <li><NavLink to="/" onClick={() => setOpenMenu(false)}>Inicio</NavLink></li>
+                  <li><NavLink to="/shopping" onClick={() => setOpenMenu(false)}>Compras</NavLink></li>
+                  <li><NavLink to="/history" onClick={() => setOpenMenu(false)}>Historial de visitados</NavLink></li>
+                  <li><NavLink to="/about" onClick={() => setOpenMenu(false)}>Acerca de</NavLink></li>
+                  <li><NavLink to="/settings" onClick={() => setOpenMenu(false)}>Configuraciones</NavLink></li>
+                </ul>
+              </nav>
+            )}
+          </div>
         </div>
       </div>
       <div className="search-bar">
@@ -37,14 +64,6 @@ const Header = () => {
         <div className="search-filters">
         </div>
       </div>
-      {/* <nav className={`nav ${openMenu ? "active" : ""}`}>
-        <ul>
-          <li><NavLink to="/search">Buscar</NavLink></li>
-          <li><NavLink to="/categories">Categorías</NavLink></li>
-          <li><NavLink to="/about">Acerca</NavLink></li>
-        </ul>
-      </nav> */}
-
     </header>
   );
 };

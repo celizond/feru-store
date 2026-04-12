@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import Search from "../pages/Search/Search";
+import Shopping from "../pages/Shopping/Shopping";
 import MainLayout from "../layout/MainLayout";
 
 const AppRouter = () => {
@@ -11,7 +11,7 @@ const AppRouter = () => {
         <Route path="/" element={<MainLayout />}>
 
           <Route index element={<Home />} />
-          <Route path="search" element={<Search />} />
+          <Route path="shopping" element={<Shopping />} />
 
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
