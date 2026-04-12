@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
+import { HeartIcon, MenuIcon, ShoppingCartIcon } from "../../assets/icons";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -16,9 +17,9 @@ const Header = () => {
         <div className="logo">LOGO</div>
 
         <div className="header-functions">
-          <a href="/wishlist">Wishlist</a>
-          <a href="/cart">Cart</a>
-          <a href="/user">User</a>
+          <a href="/wishlist"><HeartIcon /></a>
+          <a href="/cart"><ShoppingCartIcon /></a>
+          <MenuIcon />
         </div>
       </div>
       <nav className={`nav ${openMenu ? "active" : ""}`}>
