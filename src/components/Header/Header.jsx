@@ -10,16 +10,14 @@ const Header = () => {
     <header className="header">
 
       <div className="top-bar">
-        <button className="menu-btn" onClick={() => setOpenMenu(!openMenu)}>
-          Menú
-        </button>
-
         <div className="logo">LOGO</div>
-
         <div className="header-functions">
           <a href="/wishlist"><HeartIcon /></a>
           <a href="/cart"><ShoppingCartIcon /></a>
           <MenuIcon />
+          {/* <button className="menu-btn" onClick={() => setOpenMenu(!openMenu)}>
+            
+          </button> */}
         </div>
       </div>
       <nav className={`nav ${openMenu ? "active" : ""}`}>

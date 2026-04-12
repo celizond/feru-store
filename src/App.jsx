@@ -1,5 +1,4 @@
-import './App.css'
-import AppRouter from './router/appRouter'
+import AppRouter from './router/appRouter';
 
 const App = () => {
 

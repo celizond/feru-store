@@ -1,6 +1,8 @@
 .header {
-    background: grey;
-    border-bottom: 1px solid #ddd;
+    background: #FFF;
+    border-bottom: 1px solid #ddddddc3;
+    height: 56px;
+    padding-inline: 10px;
 }
 
 .nav {
@@ -13,10 +15,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+}
+
+.header-functions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-functions a {
+    display: flex;
+    align-items: center;
+}
+
+.header-functions svg {
+    display: block;
 }
 
 .menu-btn {
-    font-size: 20px;
     background: none;
     border: none;
 }
