@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { CrossIcon, HeartIcon, MenuIcon, ShoppingCartIcon } from "../../assets/icons";
 import "./Header.css";
+import logoFeru from "../../assets/logoFeru.png";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -22,7 +23,7 @@ const Header = () => {
     <header className="header">
 
       <div className="top-bar">
-        <div className="logo">LOGO</div>
+        <img className="logo" src={logoFeru} alt="Logo FERU" />
         <div className="header-functions">
           <HeartIcon />
           <ShoppingCartIcon />

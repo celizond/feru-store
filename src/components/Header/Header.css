@@ -1,12 +1,17 @@
 .header {
     background: #5539613f;
     border-bottom: 1px solid #ddddddc3;
-    padding-inline: 8px;
+    padding-inline: 18px 8px;
     position: relative;
 }
 
 .top-bar, .search-bar {
     min-height: 56px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
 }
 
 .nav {
