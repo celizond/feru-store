@@ -1,8 +1,11 @@
 .header {
-    background: #FFF;
+    background: #5539613f;
     border-bottom: 1px solid #ddddddc3;
-    height: 56px;
-    padding-inline: 10px;
+    padding-inline: 8px;
+}
+
+.top-bar, .search-bar {
+    min-height: 56px;
 }
 
 .nav {
@@ -30,6 +33,63 @@
 }
 
 .header-functions svg {
+    display: block;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+.search-input-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 16px;
+    padding: 4px 10px 4px 14px;
+    background: #ffffff;
+}
+
+.search-input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: rgb(50, 5, 80);
+    background: transparent;
+    height:36px;
+}
+
+.search-input-wrap:focus-within {
+    border-color: #bfbfbf;
+}
+
+.search-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #e8e8e8;
+    color: inherit;
+    text-decoration: none;
+}
+
+.icon-btn:hover {
+    background: #f7f7f7;
+}
+
+.icon-btn svg {
     display: block;
 }
 
