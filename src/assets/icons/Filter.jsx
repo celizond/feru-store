@@ -1,6 +1,6 @@
-export const MenuIcon = ({ width = 36, height = 36 }) => (
+export const FilterIcon = ({ width = 40, height = 40 }) => (
     <svg width={width} height={height} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 20H35M5 10H35M5 30H35"
+        <path d="M36.6667 5H3.33334L16.6667 20.7667V31.6667L23.3333 35V20.7667L36.6667 5Z"
             stroke="#1E1E1E"
             strokeWidth="1.6"
             strokeLinecap="round"

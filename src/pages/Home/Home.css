@@ -3,11 +3,3 @@ body {
   color: var(--color-text);
   font-family: var(--font-main);
 }
-
-button {
-  background-color: var(--accent-bg);
-}
-
-button:hover {
-  background-color: var(--accent);
-}

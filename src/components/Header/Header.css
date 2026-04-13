@@ -1,5 +1,5 @@
 .header {
-    background: #5539613f;
+    background: #5539612b;
     border-bottom: 1px solid #ddddddc3;
     padding-inline: 8px 8px;
     position: relative;
@@ -179,9 +179,14 @@
 .nav li {
     list-style: none;
 }
+
 ul {
     padding: 0;
     margin: 0;
+}
+
+button {
+  background-color: var(--accent-bg);
 }
 
 /* DESKTOP */

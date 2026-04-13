@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { CrossIcon, HeartIcon, MenuIcon, ShoppingCartIcon } from "../../assets/icons";
+import { 
+  CrossIcon, 
+  HeartIcon, 
+  MenuIcon, 
+  CartIcon,
+  SearchIcon,
+  FilterIcon
+ } from "../../assets/icons";
 import "./Header.css";
 import logoFeru from "../../assets/logoFeru.png";
 import FilterChip from "../ui/FilterChip/FilterChip";
@@ -32,7 +39,7 @@ const Header = () => {
         <img className="logo" src={logoFeru} alt="Logo FERU" />
         <div className="header-functions">
           <HeartIcon />
-          <ShoppingCartIcon />
+          <CartIcon />
           <div className="menu-wrap" ref={menuRef}>
             <button className="menu-btn" onClick={() => setOpenMenu(!openMenu)} aria-label="Menú">
               {openMenu ? <CrossIcon /> : <MenuIcon />}
@@ -60,12 +67,12 @@ const Header = () => {
             placeholder="Buscar producto..."
           />
           <div className="search-actions">
-            <a className="icon-btn" href="/wishlist" aria-label="Buscar">
-              <HeartIcon width={20} height={20} />
-            </a>
-            <a className="icon-btn" href="/cart" aria-label="Agregar filtro">
-              <ShoppingCartIcon width={20} height={20} />
-            </a>
+            <button className="icon-btn" onClick={()=> console.log("Presiono buscar")} aria-label="Buscar">
+              <SearchIcon width={20} height={20} />
+            </button>
+            <button className="icon-btn" onClick={()=> console.log("Presiono filtro")} aria-label="Agregar filtro">
+              <FilterIcon width={20} height={20} />
+            </button>
           </div>
         </div>
         <div className="search-filters">
