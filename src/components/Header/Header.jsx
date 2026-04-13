@@ -3,10 +3,16 @@ import { NavLink } from "react-router-dom";
 import { CrossIcon, HeartIcon, MenuIcon, ShoppingCartIcon } from "../../assets/icons";
 import "./Header.css";
 import logoFeru from "../../assets/logoFeru.png";
+import FilterChip from "../ui/FilterChip/FilterChip";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [filters, setFilters] = useState([{ id: "price", label: "Precio > 10" }]);
   const menuRef = useRef(null);
+
+  const handleRemoveFilter = (filterId) => {
+    setFilters((prevFilters) => prevFilters.filter((filter) => filter.id !== filterId));
+  };
 
   useEffect(() => {
     if (!openMenu) return;
@@ -63,6 +69,13 @@ const Header = () => {
           </div>
         </div>
         <div className="search-filters">
+          {filters.map((filter) => (
+            <FilterChip
+              key={filter.id}
+              label={filter.label}
+              onRemove={() => handleRemoveFilter(filter.id)}
+            />
+          ))}
         </div>
       </div>
     </header>
