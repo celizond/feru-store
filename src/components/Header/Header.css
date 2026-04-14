@@ -14,7 +14,17 @@
     height: 40px;
     width: auto;
     padding-left: 10px;
+    transition: all 0.2s ease;
 }
+
+    .logo:hover {
+        opacity: 0.85;
+    }
+
+    .logo:active {
+        transform: scale(0.9);
+    }
+
 
 .nav {
     display: flex;
