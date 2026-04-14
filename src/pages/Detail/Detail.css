@@ -1,0 +1,351 @@
+/* src/pages/Detail/Detail.css */
+
+.detail-page {
+    padding: 0 16px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 14px;
+    margin: 16px 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--text);
+    font-size: 13px;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+    .back-btn:hover {
+        background: var(--accent-bg);
+        border-color: var(--accent-border);
+        color: var(--accent);
+    }
+
+/* Layout principal */
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Galería */
+.detail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.detail-main-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    background: var(--code-bg);
+}
+
+.detail-thumbnails {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+
+    .detail-thumbnails::-webkit-scrollbar {
+        display: none;
+    }
+
+    .detail-thumbnails img {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid var(--border);
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: border-color 0.2s ease;
+    }
+
+        .detail-thumbnails img:hover {
+            border-color: var(--accent);
+        }
+
+/* Info */
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-category {
+    font-size: 12px;
+    text-transform: capitalize;
+    color: var(--accent);
+    font-weight: 500;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 20px;
+    padding: 3px 10px;
+    align-self: flex-start;
+}
+
+.detail-title {
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    margin: 4px 0 0;
+    line-height: 1.2;
+}
+
+.detail-brand {
+    font-size: 13px;
+    color: var(--text);
+    margin: 0;
+}
+
+.detail-pricing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.detail-price {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-h);
+    letter-spacing: -0.5px;
+}
+
+.detail-discount {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--accent);
+    border-radius: 20px;
+    padding: 3px 10px;
+}
+
+.detail-rating {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.detail-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 4px 0;
+}
+
+/* Meta info */
+.detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--code-bg);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+    .detail-meta p {
+        font-size: 13px;
+        color: var(--text);
+    }
+
+    .detail-meta strong {
+        color: var(--text-h);
+    }
+
+.in-stock {
+    color: #2e7d32;
+    font-weight: 500;
+}
+
+.out-stock {
+    color: #c62828;
+    font-weight: 500;
+}
+
+/* Botón wishlist */
+.wishlist-btn {
+    height: 48px;
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 8px;
+}
+
+    .wishlist-btn:hover {
+        background: rgba(170, 59, 255, 0.18);
+    }
+
+.wishlist-added {
+    font-size: 14px;
+    color: #2e7d32;
+    background: #f1f8f1;
+    border: 1px solid #a5d6a7;
+    border-radius: 10px;
+    padding: 12px 16px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* Reviews */
+.detail-reviews {
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+}
+
+    .detail-reviews h2 {
+        margin-bottom: 16px;
+    }
+
+.review-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .review-header strong {
+        font-size: 14px;
+        color: var(--text-h);
+    }
+
+    .review-header span {
+        font-size: 13px;
+        color: var(--text);
+    }
+
+.review-card p {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.review-card small {
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.7;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 200;
+    padding: 0;
+}
+
+.modal-content {
+    background: #ffffff;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px 32px;
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    max-height: 90svh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+}
+
+    .modal-close:hover {
+        background: var(--accent-bg);
+        border-color: var(--accent-border);
+        color: var(--accent);
+    }
+
+/* Tablet y desktop */
+@media (min-width: 768px) {
+    .detail-container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    .detail-gallery {
+        width: 45%;
+        flex-shrink: 0;
+    }
+
+    .detail-info {
+        flex: 1;
+    }
+
+    .detail-title {
+        font-size: 28px;
+    }
+
+    .modal-overlay {
+        align-items: center;
+    }
+
+    .modal-content {
+        border-radius: 20px;
+        padding: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .detail-page {
+        padding: 0 32px 60px;
+    }
+
+    .detail-gallery {
+        width: 40%;
+    }
+
+    .detail-title {
+        font-size: 32px;
+    }
+}

@@ -1,11 +1,88 @@
+
 /* src/pages/Contact/Contact.css */
+
+.contact-page {
+    padding: 0 16px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Info del estudio */
+.contact-info {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+    .contact-info h2 {
+        margin-bottom: 4px;
+    }
+
+.contact-tagline {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .contact-details li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--text);
+    }
+
+.contact-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.contact-details a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+    .contact-details a:hover {
+        text-decoration: underline;
+    }
+
+/* Mapa */
+.contact-map h2 {
+    margin-bottom: 6px;
+}
+
+.contact-address {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 14px;
+}
+
 .map-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* ratio 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
 }
 
     .map-wrapper iframe {
@@ -16,3 +93,36 @@
         height: 100%;
         border: none;
     }
+
+/* src/pages/Contact/Contact.css */
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+
+@media (min-width: 768px) {
+    .contact-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .contact-info {
+        width: 300px;
+        flex-shrink: 0;
+    }
+
+    .contact-map {
+        flex: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-page {
+        padding: 0 32px 60px;
+    }
+}
