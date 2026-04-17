@@ -1,0 +1,57 @@
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 16px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Info del estudio */
+
+.contact-tagline {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.contact-address {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 14px;
+}
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+}
+
+    .map-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+
+@media (min-width: 768px) {
+    .contact-container {
+        gap: 16px;
+        align-items: stretch;
+        flex-direction: row;
+    }
+
+    .contact-container > * {
+        flex: 1 1 0;
+    }
+}

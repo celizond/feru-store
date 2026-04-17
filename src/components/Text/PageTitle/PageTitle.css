@@ -1,0 +1,28 @@
+.page-title-container {
+    background-color: #FFF;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px 4px;
+    margin-bottom: 8px;
+}
+
+.page-title-container>.title {
+    letter-spacing: -1px;
+    color: var(--text-h);
+    margin: 0px;
+}
+
+.page-title-container>.subtitle {
+    font-size: 15px;
+    color: var(--text);
+    text-align: center;
+}
+
+.page-title-container>.title span{
+    color: var(--accent);
+}
+
+@media (min-width: 768px) {
+    .page-title-container {
+        padding: 20px 16px 20px;
+    }
+}

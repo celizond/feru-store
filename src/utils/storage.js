@@ -1,8 +1,21 @@
 export const saveToStorage = (key, data) => {
-  localStorage.setItem(key, JSON.stringify(data));
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch {
+    return;
+  }
 };
 
-export const getFromStorage = (key) => {
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : [];
+export const getFromStorage = (key, fallback = null) => {
+  try {
+    const data = localStorage.getItem(key);
+
+    if (data !== null) {
+      return JSON.parse(data);
+    }
+
+    return typeof fallback === "function" ? fallback() : fallback;
+  } catch {
+    return typeof fallback === "function" ? fallback() : fallback;
+  }
 };

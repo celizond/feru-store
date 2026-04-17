@@ -4,7 +4,7 @@ import "./WishlistForm.css";
 
 const NOTA_MAX_CHARS = 150;
 
-const LISTAS = ["Para mÌ", "CumpleaÒos", "Navidad", "Regalos", "Otro"];
+const LISTAS = ["Para m√≠", "Cumplea√±os", "Navidad", "Regalos", "Otro"];
 
 const WishlistForm = ({ product, onSuccess }) => {
     const { addToWishlist } = useAppContext();
@@ -23,11 +23,11 @@ const WishlistForm = ({ product, onSuccess }) => {
         if (!formData.cantidad) {
             newErrors.cantidad = "La cantidad es requerida.";
         } else if (isNaN(cantidad) || cantidad <= 0) {
-            newErrors.cantidad = "La cantidad debe ser un n˙mero mayor a cero.";
+            newErrors.cantidad = "La cantidad debe ser un n√∫mero mayor a cero.";
         }
 
         if (!formData.lista) {
-            newErrors.lista = "Seleccion· una lista.";
+            newErrors.lista = "Seleccion√° una lista.";
         }
 
         if (formData.nota.length > NOTA_MAX_CHARS) {
@@ -40,7 +40,6 @@ const WishlistForm = ({ product, onSuccess }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
-        // Limpiar error del campo al escribir
         if (errors[name]) {
             setErrors((prev) => ({ ...prev, [name]: null }));
         }
@@ -86,7 +85,7 @@ const WishlistForm = ({ product, onSuccess }) => {
                         value={formData.lista}
                         onChange={handleChange}
                     >
-                        <option value="">Seleccion· una lista</option>
+                        <option value="">Seleccion√° una lista</option>
                         {LISTAS.map((l) => (
                             <option key={l} value={l}>{l}</option>
                         ))}

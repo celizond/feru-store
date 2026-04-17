@@ -1,0 +1,10 @@
+.info-card-container {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.info-card-container h2 {
+    margin: 0px;
+}

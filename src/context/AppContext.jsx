@@ -1,28 +1,11 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext } from "react";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 const AppContext = createContext();
 
-const loadFromStorage = (key, fallback) => {
-    try {
-        const stored = localStorage.getItem(key);
-        return stored ? JSON.parse(stored) : fallback;
-    } catch {
-        return fallback;
-    }
-};
-
 export const AppProvider = ({ children }) => {
-    const [wishlist, setWishlist] = useState(() => loadFromStorage("wishlist", []));
-    const [history, setHistory] = useState(() => loadFromStorage("history", []));
-
-    // Sincronizar con localStorage cada vez que cambian
-    useEffect(() => {
-        localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    }, [wishlist]);
-
-    useEffect(() => {
-        localStorage.setItem("history", JSON.stringify(history));
-    }, [history]);
+    const [wishlist, setWishlist] = useLocalStorageState("wishlist", []);
+    const [history, setHistory] = useLocalStorageState("history", []);
 
     const addToWishlist = (product, formData) => {
         const alreadyIn = wishlist.some((item) => item.id === product.id);
@@ -41,7 +24,6 @@ export const AppProvider = ({ children }) => {
 
     const addToHistory = (product) => {
         setHistory((prev) => {
-            // Evitar duplicados: si ya existe, lo movemos al tope
             const filtered = prev.filter((item) => item.id !== product.id);
             return [{ ...product, visitedAt: new Date().toISOString() }, ...filtered];
         });
@@ -61,7 +43,6 @@ export const AppProvider = ({ children }) => {
     );
 };
 
-// Hook personalizado para usar el contexto fácilmente
 export const useAppContext = () => {
     const context = useContext(AppContext);
     if (!context) throw new Error("useAppContext debe usarse dentro de AppProvider");

@@ -1,5 +1,4 @@
-// src/services/product.service.js
-const BASE_URL = "https://dummyjson.com";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://dummyjson.com";
 
 const handleResponse = async (response) => {
     if (!response.ok) {
@@ -10,7 +9,6 @@ const handleResponse = async (response) => {
 
 export const getProducts = async ({ query = "", limit = 10, skip = 0 } = {}) => {
     try {
-        // limit=0 significa "traer todos" (DummyJSON lo soporta)
         const limitParam = limit === 0 ? 0 : limit;
         let url;
 
@@ -41,6 +39,6 @@ export const getCategories = async () => {
         const response = await fetch(`${BASE_URL}/products/categories`);
         return await handleResponse(response);
     } catch (error) {
-        throw new Error(`Error al obtener categorías: ${error.message}`);
+        throw new Error(`Error al obtener categorï¿½as: ${error.message}`);
     }
 };

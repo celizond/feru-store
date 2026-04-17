@@ -1,4 +1,3 @@
-// src/components/Header/Header.jsx
 import { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
