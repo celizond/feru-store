@@ -16,7 +16,7 @@ const HomePage = () => {
 
     if (loading) {
         return (
-            <div className="home-loading">
+            <div className="home-status">
                 <p>Cargando...</p>
             </div>
         );
@@ -24,8 +24,8 @@ const HomePage = () => {
 
     if (error) {
         return (
-            <div className="home-loading">
-                <p>Error: {error}</p>
+            <div className="home-status">
+                <p>Ha ocurrido un error, vuelva más tarde</p>
             </div>
         );
     }

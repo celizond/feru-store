@@ -37,7 +37,7 @@ const DetailPage = () => {
     };
 
     if (loading) return <p className="detail-status">Cargando producto...</p>;
-    if (error) return <p className="detail-status error">Error: {error}</p>;
+    if (error) return <p className="detail-status">Ha ocurrido un error, vuelva más tarde</p>;
     if (!product) return null;
 
     return (

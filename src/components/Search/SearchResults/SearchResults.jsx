@@ -1,5 +1,5 @@
-import Pagination from "../Pagination/Pagination";
-import ProductCard from "../ProductCard/ProductCard";
+import Pagination from "../../Pagination/Pagination";
+import ProductCard from "../../ProductCard/ProductCard";
 
 const SearchResults = ({
     loading,
@@ -15,7 +15,7 @@ const SearchResults = ({
     return (
         <>
             {loading && <p className="search-status">Buscando...</p>}
-            {error && <p className="search-status">Ha ocurrido un error, vuelva más tarde</p>}
+            {error && <p className="search-status error">Ha ocurrido un error, vuelva más tarde</p>}
             {searched && !loading && filteredResults.length === 0 && (
                 <p className="search-status">No se encontraron resultados.</p>
             )}
