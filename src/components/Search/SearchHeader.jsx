@@ -1,4 +1,4 @@
-import PageTitle from "../../Text/PageTitle/PageTitle";
+import PageTitle from "../Text/PageTitle/PageTitle";
 
 const SearchHeader = ({ currentQuery }) => {
     return currentQuery ? (

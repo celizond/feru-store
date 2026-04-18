@@ -1,7 +1,7 @@
-﻿import { useProductSearch } from "../../hooks/useProductSearch";
-import SearchHeader from "../../components/Search/SearchHeader/SearchHeader";
-import SearchFilters from "../../components/Search/SearchFilters/SearchFilters";
-import SearchResults from "../../components/Search/SearchResults/SearchResults";
+﻿import { useSearch } from "../../hooks/useSearch";
+import SearchHeader from "../../components/Search/SearchHeader";
+import SearchFilters from "../../components/Search/SearchFilters";
+import SearchResults from "../../components/Search/SearchResults";
 import "./SearchPage.css";
 
 const SearchPage = () => {
@@ -22,7 +22,7 @@ const SearchPage = () => {
         handlePageChange,
         handleFilterSubmit,
         resultCount,
-    } = useProductSearch();
+    } = useSearch();
 
     return (
         <div className="search-page">

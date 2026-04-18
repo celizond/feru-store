@@ -8,10 +8,9 @@ import {
     hasActiveClientFilters,
 } from "../utils/productSearch";
 import { useAsync } from "./useAsync";
+import { SEARCH_RESULTS_LIMIT } from "../constants/search.constants";
 
-const LIMIT = 10;
-
-export const useProductSearch = () => {
+export const useSearch = () => {
     const [searchParams] = useSearchParams();
 
     const [category, setCategory] = useState("");
@@ -32,10 +31,10 @@ export const useProductSearch = () => {
     });
 
     const searchProducts = useCallback((page = 1, overrideQuery) => {
-        const skip = (page - 1) * LIMIT;
+        const skip = (page - 1) * SEARCH_RESULTS_LIMIT;
         const activeQuery = overrideQuery !== undefined ? overrideQuery : currentQuery;
 
-        return getProducts({ query: activeQuery, limit: LIMIT, skip });
+        return getProducts({ query: activeQuery, limit: SEARCH_RESULTS_LIMIT, skip });
     }, [currentQuery]);
 
     const fetchAllProducts = useCallback(() => {
@@ -87,7 +86,7 @@ export const useProductSearch = () => {
     useEffect(() => {
         const hasClientFilters = hasActiveClientFilters(category, priceRange);
 
-        if (hasClientFilters && total > LIMIT) {
+        if (hasClientFilters && total > SEARCH_RESULTS_LIMIT) {
             fetchAllResults();
         } else {
             setAllResults(results);
@@ -105,8 +104,8 @@ export const useProductSearch = () => {
 
     const totalPages = useMemo(() => {
         return hasClientFilters
-            ? Math.ceil(filteredResults.length / LIMIT)
-            : Math.ceil(total / LIMIT);
+            ? Math.ceil(filteredResults.length / SEARCH_RESULTS_LIMIT)
+            : Math.ceil(total / SEARCH_RESULTS_LIMIT);
     }, [filteredResults.length, hasClientFilters, total]);
 
     const activePage = hasClientFilters ? clientPage : currentPage;
@@ -117,7 +116,7 @@ export const useProductSearch = () => {
             filteredResults,
             clientPage,
             results,
-            limit: LIMIT,
+            limit: SEARCH_RESULTS_LIMIT,
         });
     }, [clientPage, filteredResults, hasClientFilters, results]);
 

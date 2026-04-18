@@ -6,7 +6,6 @@ import DetailPage from "../pages/DetailPage/DetailPage";
 import WishlistPage from "../pages/WishlistPage/WishlistPage";
 import HistoryPage from "../pages/HistoryPage/HistoryPage";
 import ContactPage from "../pages/ContactPage/ContactPage";
-import ShoppingPage from "../pages/ShoppingPage/ShoppingPage";
 
 const AppRouter = () => {
   return (
@@ -21,7 +20,6 @@ const AppRouter = () => {
           <Route path="wishlist" element={<WishlistPage />} />
           <Route path="history" element={<HistoryPage />} />
           <Route path="contact" element={<ContactPage />} />
-          <Route path="shopping" element={<ShoppingPage />} />
 
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
