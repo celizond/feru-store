@@ -4,6 +4,7 @@ import { useAsync } from "../../hooks/useAsync";
 import { getProductById } from "../../services/product.service";
 import { useAppContext } from "../../context/AppContext";
 import WishlistForm from "../../components/WishlistForm/WishlistForm";
+import { StarIcon } from "../../assets/icons";
 import "./DetailPage.css";
 
 const DetailPage = () => {
@@ -116,7 +117,11 @@ const DetailPage = () => {
                         <article key={i} className="review-card">
                             <div className="review-header">
                                 <strong>{review.reviewerName}</strong>
-                                <span>⭐ {review.rating}</span>
+                                <div className="review-rating">
+                                    {Array.from({ length: 5 }, (_, i) => (
+                                        <StarIcon key={i} active={i < review.rating} />
+                                    ))}
+                                </div>
                             </div>
                             <p>{review.comment}</p>
                             <small>{new Date(review.date).toLocaleDateString("es-AR")}</small>

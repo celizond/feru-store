@@ -13,10 +13,11 @@ const WishlistForm = ({ product, onSuccess }) => {
     const availableStock = Number(product?.stock ?? 0);
 
     const [formData, setFormData] = useState({
-        cantidad: "",
+        cantidad: "1",
         lista: "",
         nota: "",
     });
+    const [isInitialAmount, setIsInitialAmount] = useState(true);
     const [errors, setErrors] = useState({});
 
     const hasStockExceeded =
@@ -24,7 +25,7 @@ const WishlistForm = ({ product, onSuccess }) => {
         availableStock > 0 &&
         Number(formData.cantidad) > availableStock;
 
-    const stockExceededMessage = "No hay stock suficiente";
+    const stockExceededMessage = `No hay stock suficiente, solo quedan ${availableStock} unidades para este producto.`;
 
     const validate = () => {
         const newErrors = {};
@@ -57,6 +58,7 @@ const WishlistForm = ({ product, onSuccess }) => {
         if (name === "cantidad") {
             const onlyDigits = value.replace(/\D/g, "");
             setFormData((prev) => ({ ...prev, [name]: onlyDigits }));
+            setIsInitialAmount(false);
         } else {
             setFormData((prev) => ({ ...prev, [name]: value }));
         }
@@ -67,6 +69,13 @@ const WishlistForm = ({ product, onSuccess }) => {
 
         if (errors.submit) {
             setErrors((prev) => ({ ...prev, submit: null }));
+        }
+    };
+
+    const handleCantidadFocus = () => {
+        if (isInitialAmount) {
+            setFormData((prev) => ({ ...prev, cantidad: "" }));
+            setIsInitialAmount(false);
         }
     };
 
@@ -111,8 +120,9 @@ const WishlistForm = ({ product, onSuccess }) => {
                         type="text"
                         inputMode="numeric"
                         autoComplete="off"
-                        placeholder="Ej: 2"
+                        placeholder="Ingrese la cantidad deseada"
                         value={formData.cantidad}
+                        onFocus={handleCantidadFocus}
                         onChange={handleChange}
                     />
                     {hasStockExceeded && <span className="wf-error">{stockExceededMessage}</span>}
