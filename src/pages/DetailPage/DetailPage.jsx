@@ -66,7 +66,7 @@ const DetailPage = () => {
                 <div className="detail-info">
                     <span className="detail-category">{product.category}</span>
                     <h1 className="detail-title">{product.title}</h1>
-                    <p className="detail-brand">por {product.brand}</p>
+                    { product.brand && <p className="detail-brand">por {product.brand}</p> }
 
                     <div className="detail-pricing">
                         <span className="detail-price">${product.price.toFixed(2)}</span>
