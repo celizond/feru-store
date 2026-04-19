@@ -7,9 +7,7 @@ import "./SearchPage.css";
 const SearchPage = () => {
     const {
         category,
-        setCategory,
         priceRange,
-        setPriceRange,
         categories,
         loading,
         error,
@@ -19,9 +17,12 @@ const SearchPage = () => {
         visibleResults,
         totalPages,
         activePage,
+        resultCount,
+        setCategory,
+        setPriceRange,
         handlePageChange,
         handleFilterSubmit,
-        resultCount,
+        handleClearFilters,
     } = useSearch();
 
     return (
@@ -36,7 +37,9 @@ const SearchPage = () => {
                     categories={categories}
                     priceRange={priceRange}
                     setPriceRange={setPriceRange}
+                    currentQuery={currentQuery}
                     onSubmit={handleFilterSubmit}
+                    onClear={handleClearFilters}
                 />
 
                 <SearchResults

@@ -11,10 +11,12 @@ import { useAsync } from "./useAsync";
 import { SEARCH_RESULTS_LIMIT } from "../constants/search.constants";
 
 export const useSearch = () => {
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const [category, setCategory] = useState("");
     const [priceRange, setPriceRange] = useState({ min: "", max: "" });
+    const [draftCategory, setDraftCategory] = useState("");
+    const [draftPriceRange, setDraftPriceRange] = useState({ min: "", max: "" });
     const [results, setResults] = useState([]);
     const [allResults, setAllResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
@@ -133,10 +135,26 @@ export const useSearch = () => {
     const handleFilterSubmit = useCallback((event) => {
         event.preventDefault();
 
+        setCategory(draftCategory);
+        setPriceRange(draftPriceRange);
+        setClientPage(1);
+
         if (results.length === 0) {
             fetchResults(1);
         }
-    }, [fetchResults, results.length]);
+    }, [draftCategory, draftPriceRange, fetchResults, results.length]);
+
+    const handleClearFilters = useCallback(() => {
+        const emptyRange = { min: "", max: "" };
+
+        setDraftCategory("");
+        setDraftPriceRange(emptyRange);
+        setCategory("");
+        setPriceRange(emptyRange);
+        setClientPage(1);
+        setSearchParams({});
+        fetchResults(1, "");
+    }, [fetchResults, setSearchParams]);
 
     const resultCount = useMemo(() => {
         return buildSearchResultCount({
@@ -151,10 +169,10 @@ export const useSearch = () => {
     const error = searchError || allResultsError;
 
     return {
-        category,
-        setCategory,
-        priceRange,
-        setPriceRange,
+        category: draftCategory,
+        setCategory: setDraftCategory,
+        priceRange: draftPriceRange,
+        setPriceRange: setDraftPriceRange,
         categories,
         loading,
         error,
@@ -166,6 +184,7 @@ export const useSearch = () => {
         activePage,
         handlePageChange,
         handleFilterSubmit,
+        handleClearFilters,
         resultCount,
     };
 };

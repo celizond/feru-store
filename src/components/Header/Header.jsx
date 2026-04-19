@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
   CrossIcon,
   HeartIcon,
@@ -14,7 +14,9 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const menuRef = useRef(null);
+  const location = useLocation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (!openMenu) return;
@@ -26,6 +28,15 @@ const Header = () => {
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [openMenu]);
+
+  useEffect(() => {
+    if (location.pathname !== "/search") {
+      setSearchInput("");
+      return;
+    }
+
+    setSearchInput(searchParams.get("q") || "");
+  }, [location.pathname, searchParams]);
 
   const handleSearch = (e) => {
     e.preventDefault();

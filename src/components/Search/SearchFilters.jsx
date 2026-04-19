@@ -6,7 +6,9 @@ const SearchFilters = ({
     categories,
     priceRange,
     setPriceRange,
+    currentQuery,
     onSubmit,
+    onClear,
 }) => {
     return (
         <form className="filters-form" onSubmit={onSubmit}>
@@ -53,11 +55,8 @@ const SearchFilters = ({
             />
             <Button
                 text="Limpiar filtros"
-                onClick={() => {
-                    setCategory("");
-                    setPriceRange({ min: "", max: "" });
-                }}
-                disabled={!category && !priceRange.min && !priceRange.max}
+                onClick={onClear}
+                disabled={!currentQuery && !category && !priceRange.min && !priceRange.max}
             />
         </form>
     );
