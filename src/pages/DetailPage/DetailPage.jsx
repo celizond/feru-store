@@ -6,6 +6,7 @@ import { useAppContext } from "../../context/AppContext";
 import WishlistForm from "../../components/WishlistForm/WishlistForm";
 import { StarIcon } from "../../assets/icons";
 import "./DetailPage.css";
+import Button from "../../components/Button/Button";
 
 const DetailPage = () => {
     const { id } = useParams();
@@ -66,8 +67,8 @@ const DetailPage = () => {
 
                 <div className="detail-info">
                     <span className="detail-category">{product.category}</span>
-                    <h1 className="detail-title">{product.title}</h1>
-                    { product.brand && <p className="detail-brand">por {product.brand}</p> }
+                    <h2 className="detail-title">{product.title}</h2>
+                    {product.brand && <p className="detail-brand">por {product.brand}</p>}
 
                     <div className="detail-pricing">
                         <span className="detail-price">${product.price.toFixed(2)}</span>
@@ -100,12 +101,16 @@ const DetailPage = () => {
                     {addedToWishlist ? (
                         <p className="wishlist-added">❤️ Ya está en tu lista de deseos</p>
                     ) : (
-                        <button
-                            className="wishlist-btn"
-                            onClick={() => setShowForm(true)}
-                        >
-                            ♡ Agregar a lista de deseos
-                        </button>
+                        product.stock > 0 ?
+                            <Button
+                                text="♡ Agregar a lista de deseos"
+                                onClick={() => setShowForm(true)}
+                            />
+                            :
+                            <Button
+                                text="Sin stock"
+                                disabled
+                            />
                     )}
                 </div>
             </div>

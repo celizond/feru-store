@@ -1,3 +1,5 @@
+import Button from "../Button/Button";
+
 const SearchFilters = ({
     category,
     setCategory,
@@ -45,7 +47,18 @@ const SearchFilters = ({
                 </div>
             </div>
 
-            <button type="submit" className="filter-btn">Aplicar filtros</button>
+            <Button
+                text="Aplicar filtros"
+                type="submit"
+            />
+            <Button
+                text="Limpiar filtros"
+                onClick={() => {
+                    setCategory("");
+                    setPriceRange({ min: "", max: "" });
+                }}
+                disabled={!category && !priceRange.min && !priceRange.max}
+            />
         </form>
     );
 };

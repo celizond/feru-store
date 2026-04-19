@@ -10,7 +10,7 @@ const SearchResults = ({
     resultCount,
     activePage,
     totalPages,
-    onPageChange,
+    onClick,
 }) => {
     return (
         <>
@@ -31,7 +31,7 @@ const SearchResults = ({
                     <Pagination
                         currentPage={activePage}
                         totalPages={totalPages}
-                        onPageChange={onPageChange}
+                        onClick={onClick}
                     />
                 </>
             )}

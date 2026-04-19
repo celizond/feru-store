@@ -48,7 +48,7 @@ const SearchPage = () => {
                     resultCount={resultCount}
                     activePage={activePage}
                     totalPages={totalPages}
-                    onPageChange={handlePageChange}
+                    onClick={handlePageChange}
                 />
             </section>
         </div>

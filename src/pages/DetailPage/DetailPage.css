@@ -187,25 +187,6 @@
     font-weight: 500;
 }
 
-/* Bot�n wishlist */
-.wishlist-btn {
-    height: 48px;
-    border: 1px solid var(--accent-border);
-    border-radius: 12px;
-    background: var(--accent-bg);
-    color: var(--accent);
-    font-size: 15px;
-    font-weight: 500;
-    font-family: var(--sans);
-    cursor: pointer;
-    transition: background 0.2s ease;
-    margin-top: 8px;
-}
-
-    .wishlist-btn:hover {
-        background: rgba(170, 59, 255, 0.18);
-    }
-
 .wishlist-added {
     font-size: 14px;
     color: #2e7d32;

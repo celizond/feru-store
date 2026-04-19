@@ -2,6 +2,7 @@
 import { useAppContext } from "../../context/AppContext";
 import "./HistoryPage.css";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
+import Button from "../../components/Button/Button";
 
 const HistoryPage = () => {
     const { history } = useAppContext();
@@ -13,9 +14,10 @@ const HistoryPage = () => {
                 <h1>Historial</h1>
                 <div className="empty-state">
                     <p>🕐 Todavía no visitaste ningún producto.</p>
-                    <button onClick={() => navigate("/search")}>
-                        Explorar productos
-                    </button>
+                    <Button
+                        text="Explorar productos"
+                        onClick={() => navigate("/search")}
+                    />
                 </div>
             </section>
         );

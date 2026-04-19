@@ -1,6 +1,7 @@
 ﻿import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
+import Button from "../../components/Button/Button";
 import "./WishlistPage.css";
 
 const WishlistPage = () => {
@@ -18,9 +19,10 @@ const WishlistPage = () => {
                 </section>
                 <div className="empty-state">
                     <p>♡ Tu lista de deseos está vacía.</p>
-                    <button onClick={() => navigate("/search")}>
-                        Explorar productos
-                    </button>
+                    <Button
+                        text="Explorar productos"
+                        onClick={() => navigate("/search")}
+                    />
                 </div>
             </section>
         );

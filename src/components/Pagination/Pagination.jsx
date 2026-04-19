@@ -1,22 +1,22 @@
-﻿import PageButton from "../Button/PageButton";
+﻿import Button from "../Button/Button";
 import "./Pagination.css";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ currentPage, totalPages, onClick }) => {
     if (totalPages <= 1) return null;
 
     return (
         <nav className="pagination" aria-label="Paginación">
-            <PageButton 
+            <Button 
                 text="← Anterior"
-                onPageChange={() => onPageChange(currentPage - 1)}
+                onClick={() => onClick(currentPage - 1)}
                 disabled={currentPage === 1}
             />
             <span className="page-info">
                 Página {currentPage} de {totalPages}
             </span>
-            <PageButton
+            <Button
                 text="Siguiente →"
-                onPageChange={() => onPageChange(currentPage + 1)}
+                onClick={() => onClick(currentPage + 1)}
                 disabled={currentPage === totalPages}
             />
         </nav>

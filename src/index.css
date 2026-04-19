@@ -87,3 +87,21 @@ p {
     margin: 32px;
   }
 }
+
+select::-webkit-scrollbar {
+  width: 8px;
+}
+select::-webkit-scrollbar-track {
+  background: #D3D3D3;
+}
+select::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+select::-webkit-scrollbar-thumb:hover {
+  background: #606060;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  filter: invert(1);
+}

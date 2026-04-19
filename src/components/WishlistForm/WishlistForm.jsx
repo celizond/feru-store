@@ -5,6 +5,7 @@ import { FormSelect } from "../FormSelect/FormSelect";
 import "./WishlistForm.css";
 import { LISTAS, NOTA_MAX_CHARS } from "../../constants/wishlist.constants";
 import { FormTextarea } from "../FormTextarea/FormTextArea";
+import Button from "../Button/Button";
 
 const WishlistForm = ({ product, onSuccess }) => {
     const { addToWishlist } = useAppContext();
@@ -78,9 +79,12 @@ const WishlistForm = ({ product, onSuccess }) => {
                     maxChars={NOTA_MAX_CHARS}
                 />
 
-                <button type="submit" className="wf-submit" disabled={!isFormReadyToSubmit}>
-                    Guardar en lista
-                </button>
+                <Button
+                    type="submit"
+                    text="Guardar en lista"
+                    styleVariant="wf-submit"
+                    disabled={!isFormReadyToSubmit}
+                />
                 {errors.submit && <span className="wf-error">{errors.submit}</span>}
             </form>
         </div>
