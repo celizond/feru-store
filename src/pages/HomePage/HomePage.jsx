@@ -4,6 +4,7 @@ import { useHomeProducts } from "../../hooks/useHomeProducts";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
 import "./HomePage.css";
+import Spinner from "../../components/Spinner/Spinner";
 
 const HomePage = () => {
     const { history, wishlist } = useAppContext();
@@ -17,9 +18,7 @@ const HomePage = () => {
 
     if (loading) {
         return (
-            <div className="home-status">
-                <p>Cargando...</p>
-            </div>
+            <Spinner />
         );
     }
 

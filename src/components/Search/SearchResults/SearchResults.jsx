@@ -1,5 +1,6 @@
 import Pagination from "../../Pagination/Pagination";
 import ProductCard from "../../ProductCard/ProductCard";
+import Spinner from "../../Spinner/Spinner";
 
 const SearchResults = ({
     loading,
@@ -14,7 +15,7 @@ const SearchResults = ({
 }) => {
     return (
         <>
-            {loading && <p className="search-status">Buscando...</p>}
+            {loading && <Spinner />}
             {error && <p className="search-status">Ha ocurrido un error, vuelva más tarde</p>}
             {searched && !loading && filteredResults.length === 0 && (
                 <p className="search-status">No se encontraron resultados.</p>

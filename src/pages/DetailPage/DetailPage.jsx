@@ -7,6 +7,7 @@ import WishlistForm from "../../components/WishlistForm/WishlistForm";
 import { StarIcon } from "../../assets/icons";
 import "./DetailPage.css";
 import Button from "../../components/Button/Button";
+import Spinner from "../../components/Spinner/Spinner";
 
 const DetailPage = () => {
     const { id } = useParams();
@@ -37,7 +38,7 @@ const DetailPage = () => {
         setAddedToWishlist(true);
     };
 
-    if (loading) return <p className="detail-status">Cargando producto...</p>;
+    if (loading) return <Spinner />;
     if (error) return <p className="detail-status">Ha ocurrido un error, vuelva más tarde</p>;
     if (!product) return null;
 
