@@ -1,71 +1,7 @@
-.history-count {
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 16px;
-}
-
 .history-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.history-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 12px;
-    cursor: pointer;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-    .history-item:hover {
-        box-shadow: var(--shadow);
-        border-color: var(--accent-border);
-    }
-
-.history-img {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 10px;
-    background: var(--code-bg);
-    flex-shrink: 0;
-}
-
-.history-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    min-width: 0;
-}
-
-.history-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-h);
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.history-price {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-h);
-    margin: 0;
-}
-
-.history-category {
-    font-size: 11px;
-    color: var(--text);
-    text-transform: capitalize;
-    margin: 0;
 }
 
 .history-meta {
@@ -81,15 +17,4 @@
     font-size: 11px;
     color: var(--text);
     opacity: 0.7;
-}
-
-@media (min-width: 768px) {
-    .history-img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .history-title {
-        font-size: 15px;
-    }
 }

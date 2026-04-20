@@ -12,13 +12,6 @@ export const useWishlistForm = (product) => {
     const [isInitialAmount, setIsInitialAmount] = useState(true);
     const [errors, setErrors] = useState({});
 
-    const hasStockExceeded =
-        isPositiveInteger(formData.cantidad) &&
-        availableStock > 0 &&
-        Number(formData.cantidad) > availableStock;
-
-    const stockExceededMessage = `No hay stock suficiente, solo quedan ${availableStock} unidades para este producto.`;
-
     const validate = () => {
         const newErrors = {};
 
@@ -29,7 +22,7 @@ export const useWishlistForm = (product) => {
         } else if (availableStock <= 0) {
             newErrors.cantidad = "No hay stock disponible para este producto.";
         } else if (Number(formData.cantidad) > availableStock) {
-            newErrors.cantidad = stockExceededMessage;
+            newErrors.cantidad = `No hay stock suficiente, solo quedan ${availableStock} unidades para este producto.`;
         }
 
         if (!formData.lista) {
@@ -75,27 +68,19 @@ export const useWishlistForm = (product) => {
         setErrors((prev) => ({ ...prev, submit: message }));
     };
 
-    const isCantidadValid =
-        isPositiveInteger(formData.cantidad) &&
-        availableStock > 0 &&
-        Number(formData.cantidad) <= availableStock;
-
-    const isListaValid = LISTAS.includes(formData.lista);
-
-    const isFormReadyToSubmit = isCantidadValid && isListaValid;
+    const setValidationErrors = (newErrors) => {
+        setErrors(newErrors);
+    };
 
     return {
         formData,
         errors,
         isInitialAmount,
-        hasStockExceeded,
-        stockExceededMessage,
-        isCantidadValid,
-        isListaValid,
-        isFormReadyToSubmit,
         validate,
         handleChange,
         handleCantidadFocus,
         setSubmitError,
+        setValidationErrors,
     };
 };
+   

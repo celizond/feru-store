@@ -1,7 +1,7 @@
 ﻿import { useSearch } from "../../hooks/useSearch";
-import SearchHeader from "../../components/Search/SearchHeader";
-import SearchFilters from "../../components/Search/SearchFilters";
-import SearchResults from "../../components/Search/SearchResults";
+import SearchHeader from "../../components/Search/SearchHeader/SearchHeader";
+import SearchFilters from "../../components/Search/SearchFilters/SearchFilters";
+import SearchResults from "../../components/Search/SearchResults/SearchResults";
 import "./SearchPage.css";
 
 const SearchPage = () => {

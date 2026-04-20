@@ -1,0 +1,30 @@
+.list-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text);
+}
+
+.list-empty-state p {
+    font-size: 16px;
+}
+
+.list-empty-state button {
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid var(--accent-border);
+    border-radius: 10px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 14px;
+    font-family: var(--sans);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.list-empty-state button:hover {
+    background: rgba(170, 59, 255, 0.18);
+}

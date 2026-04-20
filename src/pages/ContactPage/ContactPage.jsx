@@ -1,5 +1,5 @@
 ﻿import InfoCard from "../../components/InfoCard/InfoCard";
-import ItemsList from "../../components/ItemsList/ItemsList";
+import ItemsListContact from "../../components/ItemsListContact/ItemsListContact";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
 import "./ContactPage.css";
 
@@ -17,7 +17,7 @@ const ContactPage = () => {
                 <InfoCard>
                     <h2>Feru store</h2>
                     <p className="contact-tagline">Desarrollo de aplicaciones web y móviles</p>
-                    <ItemsList />
+                    <ItemsListContact />
                 </InfoCard>
 
                 <InfoCard>

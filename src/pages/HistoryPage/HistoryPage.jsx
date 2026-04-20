@@ -2,7 +2,9 @@
 import { useAppContext } from "../../context/AppContext";
 import "./HistoryPage.css";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
-import Button from "../../components/Button/Button";
+import ListEmptyState from "../../components/ListPage/ListEmptyState/ListEmptyState";
+import ListCount from "../../components/ListPage/ListCount/ListCount";
+import ProductListItemBase from "../../components/ListPage/ProductListItemBase/ProductListItemBase";
 
 const HistoryPage = () => {
     const { history } = useAppContext();
@@ -11,14 +13,16 @@ const HistoryPage = () => {
     if (history.length === 0) {
         return (
             <section className="history-page">
-                <h1>Historial</h1>
-                <div className="empty-state">
-                    <p>🕐 Todavía no visitaste ningún producto.</p>
-                    <Button
-                        text="Explorar productos"
-                        onClick={() => navigate("/search")}
+                <section aria-labelledby={"history-title"}>
+                    <PageTitle
+                        id={"history-title"}
+                        title={"Historial"}
                     />
-                </div>
+                </section>
+                <ListEmptyState
+                    message="🕐 Todavía no visitaste ningún producto."
+                    onExplore={() => navigate("/search")}
+                />
             </section>
         );
     }
@@ -32,44 +36,36 @@ const HistoryPage = () => {
                 />
             </section>
             <section className="content-margin">
-                <p className="history-count">{history.length} producto{history.length !== 1 ? "s" : ""} visitado{history.length !== 1 ? "s" : ""}</p>
+                <ListCount
+                    count={history.length}
+                    singularSuffix="visitado"
+                    pluralSuffix="visitados"
+                />
 
                 <div className="history-list">
                     {history.map((item) => (
-                        <article
+                        <ProductListItemBase
                             key={item.id}
-                            className="history-item"
-                            onClick={() => navigate(`/product/${item.id}`)}
-                        >
-                            <img
-                                src={item.thumbnail}
-                                alt={item.title}
-                                className="history-img"
-                            />
-
-                            <div className="history-info">
-                                <h3 className="history-title">{item.title}</h3>
-                                <p className="history-price">${item.price.toFixed(2)}</p>
-                                <p className="history-category">{item.category}</p>
-                            </div>
-
-                            <div className="history-meta">
-                                <time className="history-time">
-                                    {new Date(item.visitedAt).toLocaleDateString("es-AR", {
-                                        day: "2-digit",
-                                        month: "2-digit",
-                                        year: "numeric",
-                                    })}
-                                </time>
-                                <time className="history-hour">
-                                    {new Date(item.visitedAt).toLocaleTimeString("es-AR", {
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                    })}
-                                </time>
-                            </div>
-
-                        </article>
+                            item={item}
+                            variant="history"
+                            rightContent={(
+                                <div className="history-meta">
+                                    <time className="history-time">
+                                        {new Date(item.visitedAt).toLocaleDateString("es-AR", {
+                                            day: "2-digit",
+                                            month: "2-digit",
+                                            year: "numeric",
+                                        })}
+                                    </time>
+                                    <time className="history-hour">
+                                        {new Date(item.visitedAt).toLocaleTimeString("es-AR", {
+                                            hour: "2-digit",
+                                            minute: "2-digit",
+                                        })}
+                                    </time>
+                                </div>
+                            )}
+                        />
                     ))}
                 </div>
             </section>

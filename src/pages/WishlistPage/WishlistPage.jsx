@@ -1,7 +1,9 @@
 ﻿import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
-import Button from "../../components/Button/Button";
+import ListEmptyState from "../../components/ListPage/ListEmptyState/ListEmptyState";
+import ListCount from "../../components/ListPage/ListCount/ListCount";
+import ProductListItemBase from "../../components/ListPage/ProductListItemBase/ProductListItemBase";
 import "./WishlistPage.css";
 
 const WishlistPage = () => {
@@ -17,13 +19,10 @@ const WishlistPage = () => {
                         title={"Lista de deseos"}
                     />
                 </section>
-                <div className="empty-state">
-                    <p>♡ Tu lista de deseos está vacía.</p>
-                    <Button
-                        text="Explorar productos"
-                        onClick={() => navigate("/search")}
-                    />
-                </div>
+                <ListEmptyState
+                    message="♡ Tu lista de deseos está vacía."
+                    onExplore={() => navigate("/search")}
+                />
             </section>
         );
     }
@@ -37,29 +36,19 @@ const WishlistPage = () => {
                 />
             </section>
             <section className="content-margin">
-                <p className="wishlist-count">{wishlist.length} producto{wishlist.length !== 1 ? "s" : ""} guardado{wishlist.length !== 1 ? "s" : ""}</p>
+                <ListCount
+                    count={wishlist.length}
+                    singularSuffix="guardado"
+                    pluralSuffix="guardados"
+                />
 
                 <div className="wishlist-list">
                     {wishlist.map((item) => (
-                        <article key={item.id} className="wishlist-item">
-
-                            <img
-                                src={item.thumbnail}
-                                alt={item.title}
-                                className="wishlist-img"
-                                onClick={() => navigate(`/product/${item.id}`)}
-                            />
-
-                            <div className="wishlist-info">
-                                <h3
-                                    className="wishlist-title"
-                                    onClick={() => navigate(`/product/${item.id}`)}
-                                >
-                                    {item.title}
-                                </h3>
-                                <p className="wishlist-price">${item.price.toFixed(2)}</p>
-                                <p className="wishlist-category">{item.category}</p>
-
+                        <ProductListItemBase
+                            key={item.id}
+                            item={item}
+                            variant="wishlist"
+                            infoExtra={(
                                 <div className="wishlist-form-data">
                                     <span>🔢 Cantidad: {item.wishlistData.cantidad}</span>
                                     <span>📋 Lista: {item.wishlistData.lista}</span>
@@ -67,17 +56,20 @@ const WishlistPage = () => {
                                         <span>📝 {item.wishlistData.nota}</span>
                                     )}
                                 </div>
-                            </div>
-
-                            <button
-                                className="wishlist-remove"
-                                onClick={() => removeFromWishlist(item.id)}
-                                aria-label="Eliminar de lista de deseos"
-                            >
-                                🗑
-                            </button>
-
-                        </article>
+                            )}
+                            rightContent={(
+                                <button
+                                    className="wishlist-remove"
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                        removeFromWishlist(item.id);
+                                    }}
+                                    aria-label="Eliminar de lista de deseos"
+                                >
+                                    🗑
+                                </button>
+                            )}
+                        />
                     ))}
                 </div>
             </section>

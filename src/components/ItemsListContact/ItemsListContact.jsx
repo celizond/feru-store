@@ -1,7 +1,7 @@
 import Item from "../Item/Item";
-import "./ItemsList.css";
+import "./ItemsListContact.css";
 
-const ItemsList = () => {
+const ItemsListContact = () => {
     return (
         <ul className="items-list-container">
             <Item icon="📍" text="La Plata, Buenos Aires, Argentina" />
@@ -12,4 +12,4 @@ const ItemsList = () => {
     )
 }
 
-export default ItemsList;
+export default ItemsListContact;

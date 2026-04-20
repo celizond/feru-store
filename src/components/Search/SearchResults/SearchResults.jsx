@@ -1,5 +1,5 @@
-import Pagination from "../Pagination/Pagination";
-import ProductCard from "../ProductCard/ProductCard";
+import Pagination from "../../Pagination/Pagination";
+import ProductCard from "../../ProductCard/ProductCard";
 
 const SearchResults = ({
     loading,

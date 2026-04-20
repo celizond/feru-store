@@ -12,19 +12,18 @@ const WishlistForm = ({ product, onSuccess }) => {
     const {
         formData,
         errors,
-        hasStockExceeded,
-        stockExceededMessage,
-        isFormReadyToSubmit,
         validate,
         handleChange,
         handleCantidadFocus,
         setSubmitError,
+        setValidationErrors,
     } = useWishlistForm(product);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = validate();
         if (Object.keys(newErrors).length > 0) {
+            setValidationErrors(newErrors);
             return;
         }
 
@@ -55,8 +54,7 @@ const WishlistForm = ({ product, onSuccess }) => {
                     placeholder="Ingrese la cantidad deseada"
                     inputMode="numeric"
                 />
-                {hasStockExceeded && <span className="wf-error">{stockExceededMessage}</span>}
-
+               
                 <FormSelect
                     id="lista"
                     label="Lista *"
@@ -83,7 +81,6 @@ const WishlistForm = ({ product, onSuccess }) => {
                     type="submit"
                     text="Guardar en lista"
                     styleVariant="wf-submit"
-                    disabled={!isFormReadyToSubmit}
                 />
                 {errors.submit && <span className="wf-error">{errors.submit}</span>}
             </form>
