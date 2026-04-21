@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter , Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/HomePage/HomePage";
 import SearchPage from "../pages/SearchPage/SearchPage";
@@ -9,7 +9,7 @@ import ContactPage from "../pages/ContactPage/ContactPage";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter basename="/feru-store">
+    <HashRouter>
       <Routes>
 
         <Route path="/" element={<MainLayout />}>
@@ -24,7 +24,7 @@ const AppRouter = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter >
   );
 }
 
