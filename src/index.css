@@ -77,10 +77,7 @@ h2 {
 
 p {
   margin: 0;
-  text-align: center;
-  @media (min-width: 481px) {
-    text-align: left;
-  }
+  text-align: left;
 }
 
 .content-margin {
