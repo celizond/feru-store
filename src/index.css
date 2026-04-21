@@ -66,9 +66,8 @@ h2 {
   font-size: 18px;
   line-height: 118%;
   letter-spacing: -0.24px;
-  text-align: center;
+  text-align: left;
   @media (min-width: 481px) {
-    text-align: left;
     font-size: 20px;
   }
   @media (min-width: 1024px) {

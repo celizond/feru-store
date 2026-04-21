@@ -30,6 +30,7 @@
 }
 
 .footer-tagline {
+    text-align: left;
     font-size: 13px;
     color: var(--text);
     margin: 0;

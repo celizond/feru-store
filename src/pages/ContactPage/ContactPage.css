@@ -13,6 +13,7 @@
 /* Info del estudio */
 
 .contact-tagline {
+    text-align: left;
     font-size: 13px;
     color: var(--text);
     margin-bottom: 20px;
