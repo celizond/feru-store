@@ -9,7 +9,7 @@ import ContactPage from "../pages/ContactPage/ContactPage";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/feru-store">
       <Routes>
 
         <Route path="/" element={<MainLayout />}>
