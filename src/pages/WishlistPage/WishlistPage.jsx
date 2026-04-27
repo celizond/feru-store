@@ -1,4 +1,5 @@
-﻿import { useNavigate } from "react-router-dom";
+﻿import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
 import ListEmptyState from "../../components/ListPage/ListEmptyState/ListEmptyState";
@@ -6,10 +7,18 @@ import ListCount from "../../components/ListPage/ListCount/ListCount";
 import ProductListItemBase from "../../components/ListPage/ProductListItemBase/ProductListItemBase";
 import "./WishlistPage.css";
 import Button from "../../components/Button/Button";
+import ConfirmModal from "../../components/Modal/ConfirmModal/ConfirmModal";
 
 const WishlistPage = () => {
     const { wishlist, removeFromWishlist, clearWishlist } = useAppContext();
     const navigate = useNavigate();
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    const handleClearWishlist = () => {
+        clearWishlist();
+        setShowConfirm(false);
+    };
+
 
     if (wishlist.length === 0) {
         return (
@@ -38,8 +47,8 @@ const WishlistPage = () => {
             </section>
             <section className="content-delete">
                 <Button
-                    onClick={clearWishlist}
-                    text={"Borrar deseados"}
+                    text="Borrar deseados"
+                    onClick={() => setShowConfirm(true)}
                 />
             </section>
             <section className="content-margin">
@@ -80,6 +89,17 @@ const WishlistPage = () => {
                     ))}
                 </div>
             </section>
+
+            {showConfirm && (
+                <ConfirmModal
+                    title="Borrar lista de deseos"
+                    message="¿Estás seguro que querés borrar toda la lista? Esta acción no se puede deshacer."
+                    confirmText="Sí, borrar"
+                    onConfirm={handleClearWishlist}
+                    onCancel={() => setShowConfirm(false)}
+                />
+            )}
+
         </div>
     );
 };
