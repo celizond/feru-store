@@ -230,7 +230,7 @@ button {
         display: block;
         width: calc(100% + 16px);
         margin-inline: -8px;
-        border-top: 1px solid #ddddddc3;
+        border-top: 1px solid rgba(170, 59, 255, 0.05);
     }
 
     .nav ul {
@@ -239,7 +239,7 @@ button {
         gap: 0;
         width: 100%;
         padding: 0;
-        background-color: var(--accent-bg);
+        background-color: rgba(170, 59, 255, 0.08);
     }
 
     .nav li {

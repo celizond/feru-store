@@ -5,9 +5,10 @@ import PageTitle from "../../components/Text/PageTitle/PageTitle";
 import ListEmptyState from "../../components/ListPage/ListEmptyState/ListEmptyState";
 import ListCount from "../../components/ListPage/ListCount/ListCount";
 import ProductListItemBase from "../../components/ListPage/ProductListItemBase/ProductListItemBase";
+import Button from "../../components/Button/Button";
 
 const HistoryPage = () => {
-    const { history } = useAppContext();
+    const { history, clearHistory } = useAppContext();
     const navigate = useNavigate();
 
     if (history.length === 0) {
@@ -33,6 +34,12 @@ const HistoryPage = () => {
                 <PageTitle
                     id={"history-title"}
                     title={"Historial"}
+                />
+            </section>
+            <section className="content-delete">
+                <Button
+                    onClick={clearHistory}
+                    text={"Borrar historial"}
                 />
             </section>
             <section className="content-margin">

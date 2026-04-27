@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import { removeFromStorage } from "../utils/storage";
 
 const AppContext = createContext();
 
@@ -29,6 +30,16 @@ export const AppProvider = ({ children }) => {
         });
     };
 
+    const clearWishlist = () => {
+        removeFromStorage("wishlist");
+        setWishlist([]);
+    };
+
+    const clearHistory = () => {
+        removeFromStorage("history");
+        setHistory([]);
+    };
+
     return (
         <AppContext.Provider value={{
             wishlist,
@@ -37,6 +48,8 @@ export const AppProvider = ({ children }) => {
             removeFromWishlist,
             isInWishlist,
             addToHistory,
+            clearWishlist,
+            clearHistory,
         }}>
             {children}
         </AppContext.Provider>

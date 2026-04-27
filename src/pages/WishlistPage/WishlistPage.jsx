@@ -5,9 +5,10 @@ import ListEmptyState from "../../components/ListPage/ListEmptyState/ListEmptySt
 import ListCount from "../../components/ListPage/ListCount/ListCount";
 import ProductListItemBase from "../../components/ListPage/ProductListItemBase/ProductListItemBase";
 import "./WishlistPage.css";
+import Button from "../../components/Button/Button";
 
 const WishlistPage = () => {
-    const { wishlist, removeFromWishlist } = useAppContext();
+    const { wishlist, removeFromWishlist, clearWishlist } = useAppContext();
     const navigate = useNavigate();
 
     if (wishlist.length === 0) {
@@ -35,6 +36,12 @@ const WishlistPage = () => {
                     title={"Lista de deseos"}
                 />
             </section>
+            <section className="content-delete">
+                <Button
+                    onClick={clearWishlist}
+                    text={"Borrar deseados"}
+                />
+            </section>
             <section className="content-margin">
                 <ListCount
                     count={wishlist.length}
@@ -50,10 +57,10 @@ const WishlistPage = () => {
                             variant="wishlist"
                             infoExtra={(
                                 <div className="wishlist-form-data">
-                                    <span>🔢 Cantidad: {item.wishlistData.cantidad}</span>
-                                    <span>📋 Lista: {item.wishlistData.lista}</span>
+                                    <span>Cantidad: {item.wishlistData.cantidad}</span>
+                                    <span>Lista: {item.wishlistData.lista}</span>
                                     {item.wishlistData.nota && (
-                                        <span>📝 {item.wishlistData.nota}</span>
+                                        <span>{item.wishlistData.nota}</span>
                                     )}
                                 </div>
                             )}

@@ -10,7 +10,6 @@
     font-size: 15px;
 }
 
-
 /* Secciones */
 .home-section {
     max-width: 1200px;
@@ -22,6 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
@@ -31,7 +31,8 @@
 
 .section-link {
     font-size: 13px;
-    color: var(--accent);
+    color: black;
+    font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -72,6 +73,12 @@
 
 .empty-cta:hover {
     background: rgba(170, 59, 255, 0.18);
+}
+
+.titles-bg {
+    flex: 1;
+    padding: 8px 12px;
+    background: linear-gradient(90deg, var(--accent-border) 0%, #D5C6E0 100%);
 }
 
 /* Mobile landscape */

@@ -1,5 +1,6 @@
 ﻿import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
+import { StarFillerIcon } from "../../assets/icons";
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
@@ -18,7 +19,8 @@ const ProductCard = ({ product }) => {
                 <p className="card-category">{product.category}</p>
                 <p className="card-price">${displayPrice}</p>
                 <div className="card-rating">
-                    ⭐ {product.rating} · {product.stock} en stock
+                    <StarFillerIcon width={11} height={11} />
+                    {product.rating} · {product.stock} en stock
                 </div>
             </div>
         </article>

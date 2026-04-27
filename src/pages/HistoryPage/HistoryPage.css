@@ -18,3 +18,9 @@
     color: var(--text);
     opacity: 0.7;
 }
+
+.content-delete {
+    display: flex;
+    justify-content: flex-end;
+    margin: 16px 32px;
+}

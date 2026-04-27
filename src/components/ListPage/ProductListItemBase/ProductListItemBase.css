@@ -45,7 +45,7 @@
 }
 
 .product-list-item--wishlist .product-list-item__info {
-    gap: 4px;
+    gap: 0px;
 }
 
 .product-list-item__title {
@@ -84,13 +84,13 @@
 
 @media (min-width: 768px) {
     .product-list-item__img {
-        width: 80px;
-        height: 80px;
+        width: 96px;
+        height: 96px;
     }
 
     .product-list-item--wishlist .product-list-item__img {
-        width: 88px;
-        height: 88px;
+        width: 96px;
+        height: 96px;
     }
 
     .product-list-item__title {

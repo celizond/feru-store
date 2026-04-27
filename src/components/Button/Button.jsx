@@ -1,6 +1,6 @@
 import "./Button.css";
 
-const Button = ({ text, type="button", styleVariant="default-btn", onClick, disabled = false }) => {
+const Button = ({ text, children, type="button", styleVariant="default-btn", onClick, disabled = false }) => {
     return (
         <button
             className={`custom-btn ${styleVariant}`}
@@ -8,7 +8,7 @@ const Button = ({ text, type="button", styleVariant="default-btn", onClick, disa
             disabled={disabled}
             type={type}
         >
-            {text}
+            {children || text}
         </button>
     )
 }

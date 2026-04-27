@@ -4,7 +4,7 @@ import { useAsync } from "../../hooks/useAsync";
 import { getProductById } from "../../services/product.service";
 import { useAppContext } from "../../context/AppContext";
 import WishlistForm from "../../components/WishlistForm/WishlistForm";
-import { StarIcon } from "../../assets/icons";
+import { HeartIcon, StarFillerIcon, StarIcon } from "../../assets/icons";
 import "./DetailPage.css";
 import Button from "../../components/Button/Button";
 import Spinner from "../../components/Spinner/Spinner";
@@ -12,7 +12,7 @@ import Spinner from "../../components/Spinner/Spinner";
 const DetailPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { addToHistory, isInWishlist } = useAppContext();
+    const { addToHistory, isInWishlist, removeFromWishlist } = useAppContext();
 
     const [showForm, setShowForm] = useState(false);
     const [addedToWishlist, setAddedToWishlist] = useState(false);
@@ -36,6 +36,11 @@ const DetailPage = () => {
     const handleWishlistSuccess = () => {
         setShowForm(false);
         setAddedToWishlist(true);
+    };
+
+    const handleRemoveFromWishlist = () => {
+        removeFromWishlist(product.id);
+        setAddedToWishlist(false);
     };
 
     const displayPrice = typeof product?.price === "number" ? product.price.toFixed(2) : "0.00";
@@ -83,7 +88,8 @@ const DetailPage = () => {
                     </div>
 
                     <div className="detail-rating">
-                        ⭐ {product.rating} · {product.stock} unidades disponibles
+                        <StarFillerIcon width={13} height={13} />
+                        {product.rating} · {product.stock} unidades disponibles
                     </div>
 
                     <p className="detail-description">{product.description}</p>
@@ -102,13 +108,20 @@ const DetailPage = () => {
                     </div>
 
                     {addedToWishlist ? (
-                        <p className="wishlist-added">❤️ Ya está en tu lista de deseos</p>
+                        <button
+                            className="wishlist-added"
+                            onClick={handleRemoveFromWishlist}
+                            title="Haz clic para remover de tu lista de deseos"
+                        >
+                            <HeartIcon width={14} height={14} active={true} color={"#2e7d32"} /> Ya está en tu lista de deseos
+                        </button>
                     ) : (
                         product.stock > 0 ?
                             <Button
-                                text="♡ Agregar a lista de deseos"
                                 onClick={() => setShowForm(true)}
-                            />
+                            >
+                                <HeartIcon width={14} height={14} color={"#AA3BFF" }/> Agregar a lista de deseos
+                            </Button>
                             :
                             <Button
                                 text="Sin stock"

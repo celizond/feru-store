@@ -41,7 +41,7 @@ const HomePage = () => {
             </section>
             <div className="content-margin">
                 <section className="home-section" aria-labelledby="home-featured-title">
-                    <div className="section-header">
+                    <div className="section-header titles-bg">
                         <h2 id="home-featured-title">Ofertas destacadas</h2>
                         <Link to="/search" className="section-link">Ver todo →</Link>
                     </div>
@@ -54,7 +54,7 @@ const HomePage = () => {
 
                 {recentHistory.length > 0 && (
                     <section className="home-section" aria-labelledby="home-history-title">
-                        <div className="section-header">
+                        <div className="section-header titles-bg">
                             <h2 id="home-history-title">Vistos recientemente</h2>
                             <Link to="/history" className="section-link">Ver historial →</Link>
                         </div>
@@ -68,7 +68,7 @@ const HomePage = () => {
 
                 {relatedToWishlist.length > 0 && (
                     <section className="home-section" aria-labelledby="home-wishlist-title">
-                        <div className="section-header">
+                        <div className="section-header titles-bg">
                             <h2 id="home-wishlist-title">Porque guardaste productos similares</h2>
                             <Link to="/wishlist" className="section-link">Ver lista →</Link>
                         </div>

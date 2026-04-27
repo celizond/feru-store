@@ -19,3 +19,11 @@ export const getFromStorage = (key, fallback = null) => {
     return typeof fallback === "function" ? fallback() : fallback;
   }
 };
+
+export const removeFromStorage = (key) => {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    return;
+  }
+};
