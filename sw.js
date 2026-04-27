@@ -83,7 +83,11 @@ self.addEventListener('fetch', event => {
         // Respuesta de error amigable cuando no hay conexión
         return new Response(
           JSON.stringify({ error: 'Sin conexión. Los datos no están disponibles offline.' }),
-          { headers: { 'Content-Type': 'application/json' } }
+          {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: { 'Content-Type': 'application/json' }
+          }
         );
       })
     );
