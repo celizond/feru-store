@@ -7,7 +7,7 @@
 // estáticos del shell de la aplicación.
 // ============================================================
 
-const CACHE_NAME = 'app-shell-v3';
+const CACHE_NAME = 'app-shell-v4';
 
 // Recursos estáticos que se cachean durante la instalación.
 // Si tu aplicación tiene archivos adicionales (fuentes locales,
@@ -141,36 +141,40 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Para recursos estáticos: Cache First
+  // Para recursos estáticos same-origin: Network First con fallback a caché
   event.respondWith(
-    caches.match(event.request)
-      .then(respuestaCacheada => {
-        if (respuestaCacheada) {
-          return respuestaCacheada;
+    fetch(event.request)
+      .then(respuestaRed => {
+        const contentType = respuestaRed.headers.get('content-type') || '';
+        const esScript = event.request.destination === 'script';
+
+        if (!respuestaRed || respuestaRed.status !== 200 || respuestaRed.type !== 'basic') {
+          throw new Error('Respuesta de red no válida');
         }
 
-        // No está en caché: solicitar a la red y guardar
-        return fetch(event.request)
-          .then(respuestaRed => {
-            // Solo cachear respuestas válidas
-            if (!respuestaRed || respuestaRed.status !== 200 ||
-                respuestaRed.type !== 'basic') {
-              return respuestaRed;
-            }
+        if (esScript && contentType.includes('text/html')) {
+          throw new Error('Respuesta HTML inválida para script');
+        }
 
-            const copiaRespuesta = respuestaRed.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, copiaRespuesta);
-            });
+        const copiaRespuesta = respuestaRed.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, copiaRespuesta);
+        });
 
-            return respuestaRed;
-          })
-          .catch(() => {
-            // Sin conexión y sin caché: página de fallback
-            if (event.request.destination === 'document') {
-              return caches.match('/feru-store/index.html');
-            }
-          });
+        return respuestaRed;
+      })
+      .catch(() => {
+        return caches.match(event.request).then(respuestaCacheada => {
+          if (respuestaCacheada) {
+            return respuestaCacheada;
+          }
+
+          if (event.request.destination === 'document') {
+            return caches.match('/feru-store/index.html');
+          }
+
+          return Response.error();
+        });
       })
   );
 });
