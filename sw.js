@@ -7,7 +7,7 @@
 // estáticos del shell de la aplicación.
 // ============================================================
 
-const CACHE_NAME = 'app-shell-v2';
+const CACHE_NAME = 'app-shell-v3';
 
 // Recursos estáticos que se cachean durante la instalación.
 // Si tu aplicación tiene archivos adicionales (fuentes locales,
@@ -71,6 +71,10 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
@@ -88,10 +92,8 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Peticiones a APIs externas: siempre a la red
-  // Modificá esta condición si tu API tiene un dominio distinto
-  if (event.request.url.includes('/api/') ||
-      !url.origin.includes(self.location.origin)) {
+  // Peticiones a APIs: siempre a la red
+  if (event.request.url.includes('/api/')) {
 
     // Para peticiones de API: Network Only
     // Si falla (sin conexión), no intentamos servir desde caché
