@@ -1,7 +1,10 @@
 ﻿import { NavLink } from "react-router-dom";
+import { NAV_LINKS } from "../../constants/navigation.constants";
 import "./Footer.css";
 
 const Footer = () => {
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className="footer">
             <div className="footer-container">
@@ -16,11 +19,11 @@ const Footer = () => {
                 <nav className="footer-nav">
                     <h3 className="footer-nav-title">Navegación</h3>
                     <ul>
-                        <li><NavLink to="/">Inicio</NavLink></li>
-                        <li><NavLink to="/search">Buscar productos</NavLink></li>
-                        <li><NavLink to="/wishlist">Lista de deseos</NavLink></li>
-                        <li><NavLink to="/history">Historial</NavLink></li>
-                        <li><NavLink to="/contact">Contacto</NavLink></li>
+                        {NAV_LINKS.map((link) => (
+                            <li key={link.to}>
+                                <NavLink to={link.to}>{link.label}</NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
 
@@ -40,7 +43,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p>© {new Date().getFullYear()} Feru Store. Todos los derechos reservados.</p>
+                <p>© {currentYear} Feru Store. Todos los derechos reservados.</p>
             </div>
         </footer>
     );

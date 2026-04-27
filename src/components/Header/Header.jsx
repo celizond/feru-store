@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { CrossIcon, HeartIcon, MenuIcon, SearchIcon } from "../../assets/icons";
+import { NAV_LINKS } from "../../constants/navigation.constants";
 import logoFeru from "../../assets/logoFeru.png";
 import "./Header.css";
 
@@ -74,11 +75,13 @@ const Header = () => {
             {openMenu && (
               <nav className="dropdown">
                 <ul>
-                  <li><NavLink to="/" onClick={() => setOpenMenu(false)}>Inicio</NavLink></li>
-                  <li><NavLink to="/search" onClick={() => setOpenMenu(false)}>Buscar producto</NavLink></li>
-                  <li><NavLink to="/wishlist" onClick={() => setOpenMenu(false)}>Lista de deseos</NavLink></li>
-                  <li><NavLink to="/history" onClick={() => setOpenMenu(false)}>Historial</NavLink></li>
-                  <li><NavLink to="/contact" onClick={() => setOpenMenu(false)}>Contacto</NavLink></li>
+                  {NAV_LINKS.map((link) => (
+                    <li key={link.to}>
+                      <NavLink to={link.to} onClick={() => setOpenMenu(false)}>
+                        {link.label}
+                      </NavLink>
+                    </li>
+                  ))}
                 </ul>
               </nav>
             )}
@@ -106,11 +109,11 @@ const Header = () => {
 
       <nav className="nav">
         <ul>
-          <li><NavLink to="/">Inicio</NavLink></li>
-          <li><NavLink to="/search">Buscar producto</NavLink></li>
-          <li><NavLink to="/wishlist">Lista de deseos</NavLink></li>
-          <li><NavLink to="/history">Historial</NavLink></li>
-          <li><NavLink to="/contact">Contacto</NavLink></li>
+          {NAV_LINKS.map((link) => (
+            <li key={link.to}>
+              <NavLink to={link.to}>{link.label}</NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
