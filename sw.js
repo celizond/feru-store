@@ -7,7 +7,7 @@
 // estáticos del shell de la aplicación.
 // ============================================================
 
-const CACHE_NAME = 'app-shell-v1';
+const CACHE_NAME = 'app-shell-v2';
 
 // Recursos estáticos que se cachean durante la instalación.
 // Si tu aplicación tiene archivos adicionales (fuentes locales,
@@ -70,6 +70,23 @@ self.addEventListener('activate', event => {
 // para garantizar datos actualizados.
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then(respuestaRed => {
+          if (respuestaRed && respuestaRed.status === 200 && respuestaRed.type === 'basic') {
+            const copiaRespuesta = respuestaRed.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put('/feru-store/index.html', copiaRespuesta);
+            });
+          }
+          return respuestaRed;
+        })
+        .catch(() => caches.match('/feru-store/index.html'))
+    );
+    return;
+  }
 
   // Peticiones a APIs externas: siempre a la red
   // Modificá esta condición si tu API tiene un dominio distinto
