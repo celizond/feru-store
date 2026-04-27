@@ -7,7 +7,7 @@
 // estáticos del shell de la aplicación.
 // ============================================================
 
-const CACHE_NAME = 'app-shell-v1';
+const CACHE_NAME = 'app-shell-v5';
 
 // Recursos estáticos que se cachean durante la instalación.
 // Si tu aplicación tiene archivos adicionales (fuentes locales,
@@ -16,13 +16,10 @@ const RECURSOS_SHELL = [
   '/feru-store/',
   '/feru-store/index.html',
   '/feru-store/manifest.json',
-
-  '/feru-store/assets/index-DZKGa2Qq.js',
-  '/feru-store/assets/index-8ROoKNkp.css',
-  '/feru-store/icons/icon-192.png',
-  '/feru-store/icons/icon-512.png',
   '/feru-store/favicon.svg',
   '/feru-store/icons.svg',
+  '/feru-store/icons/icon-192.png',
+  '/feru-store/icons/icon-512.png',
 ];
 
 // ── INSTALACIÓN ──────────────────────────────────────────────
@@ -74,28 +71,51 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Peticiones a APIs externas: siempre a la red
-  // Modificá esta condición si tu API tiene un dominio distinto
-  if (
-    url.pathname.startsWith('/api') ||
-    url.origin !== self.location.origin
-  ) {
-
-    // Para peticiones de API: Network Only
-    // Si falla (sin conexión), no intentamos servir desde caché
+  if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request).catch(() => {
-        // Respuesta de error amigable cuando no hay conexión
-        return new Response(
-          JSON.stringify({ error: 'Sin conexión. Los datos no están disponibles offline.' }),
-          { headers: { 'Content-Type': 'application/json' } }
-        );
-      })
+      fetch(event.request)
+        .then(respuestaRed => {
+          if (respuestaRed && respuestaRed.status === 200) {
+            const copia = respuestaRed.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put('/feru-store/index.html', copia));
+          }
+          return respuestaRed;
+        })
+        .catch(() => caches.match('/feru-store/index.html'))
     );
     return;
   }
 
-  // Para recursos estáticos: Cache First
+  if (url.origin !== self.location.origin) {
+    if (event.request.destination === 'image') {
+      event.respondWith(
+        caches.match(event.request)
+          .then(respuestaCacheada => {
+            if (respuestaCacheada) {
+              return respuestaCacheada;
+            }
+
+            return fetch(event.request)
+              .then(respuestaRed => {
+                if (!respuestaRed || respuestaRed.status !== 200) {
+                  return respuestaRed;
+                }
+
+                const copiaRespuesta = respuestaRed.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                  cache.put(event.request, copiaRespuesta);
+                });
+
+                return respuestaRed;
+              })
+              .catch(() => caches.match('/feru-store/icons/icon-192.png'));
+          })
+      );
+    }
+    return;
+  }
+
+  // Para recursos estáticos own-origin: Cache First
   event.respondWith(
     caches.match(event.request)
       .then(respuestaCacheada => {
@@ -120,10 +140,11 @@ self.addEventListener('fetch', event => {
             return respuestaRed;
           })
           .catch(() => {
-            // Sin conexión y sin caché: página de fallback
             if (event.request.destination === 'document') {
               return caches.match('/feru-store/index.html');
             }
+
+            return Response.error();
           });
       })
   );
