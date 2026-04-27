@@ -8,6 +8,8 @@
 // ============================================================
 
 const CACHE_NAME = 'app-shell-v5';
+const API_CACHE_NAME = 'api-cache-v1';
+const API_ORIGIN = 'https://dummyjson.com';
 
 // Recursos estáticos que se cachean durante la instalación.
 // Si tu aplicación tiene archivos adicionales (fuentes locales,
@@ -48,7 +50,7 @@ self.addEventListener('activate', event => {
       .then(nombres => {
         return Promise.all(
           nombres
-            .filter(nombre => nombre !== CACHE_NAME)
+            .filter(nombre => nombre !== CACHE_NAME && nombre !== API_CACHE_NAME)
             .map(nombre => {
               console.log('[SW] Eliminando caché anterior:', nombre);
               return caches.delete(nombre);
@@ -82,6 +84,38 @@ self.addEventListener('fetch', event => {
           return respuestaRed;
         })
         .catch(() => caches.match('/feru-store/index.html'))
+    );
+    return;
+  }
+
+  if (url.origin === API_ORIGIN && url.pathname.startsWith('/products')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(respuestaRed => {
+          if (respuestaRed && respuestaRed.status === 200) {
+            const copia = respuestaRed.clone();
+            caches.open(API_CACHE_NAME).then(cache => {
+              cache.put(event.request, copia);
+            });
+          }
+
+          return respuestaRed;
+        })
+        .catch(async () => {
+          const respuestaCacheada = await caches.match(event.request);
+          if (respuestaCacheada) {
+            return respuestaCacheada;
+          }
+
+          return new Response(
+            JSON.stringify({ error: 'Sin conexión. Los datos no están disponibles offline.' }),
+            {
+              status: 503,
+              statusText: 'Service Unavailable',
+              headers: { 'Content-Type': 'application/json' }
+            }
+          );
+        })
     );
     return;
   }
