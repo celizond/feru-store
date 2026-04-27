@@ -102,9 +102,14 @@ self.addEventListener('fetch', event => {
           return respuestaRed;
         })
         .catch(async () => {
-          const respuestaCacheada = await caches.match(event.request);
-          if (respuestaCacheada) {
-            return respuestaCacheada;
+          const respuestaCacheadaExacta = await caches.match(event.request);
+          if (respuestaCacheadaExacta) {
+            return respuestaCacheadaExacta;
+          }
+
+          const respuestaCacheadaRuta = await caches.match(event.request, { ignoreSearch: true });
+          if (respuestaCacheadaRuta) {
+            return respuestaCacheadaRuta;
           }
 
           return new Response(
