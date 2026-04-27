@@ -7,7 +7,7 @@
 // estáticos del shell de la aplicación.
 // ============================================================
 
-const CACHE_NAME = 'app-shell-v4';
+const CACHE_NAME = 'app-shell-v1';
 
 // Recursos estáticos que se cachean durante la instalación.
 // Si tu aplicación tiene archivos adicionales (fuentes locales,
@@ -15,11 +15,14 @@ const CACHE_NAME = 'app-shell-v4';
 const RECURSOS_SHELL = [
   '/feru-store/',
   '/feru-store/index.html',
+  '/feru-store/manifest.json',
+
+  '/feru-store/assets/index-DZKGa2Qq.js',
+  '/feru-store/assets/index-8ROoKNkp.css',
+  '/feru-store/icons/icon-192.png',
+  '/feru-store/icons/icon-512.png',
   '/feru-store/favicon.svg',
   '/feru-store/icons.svg',
-  '/feru-store/manifest.json',
-  '/feru-store/icons/icon-192.png',
-  '/feru-store/icons/icon-512.png'
 ];
 
 // ── INSTALACIÓN ──────────────────────────────────────────────
@@ -71,57 +74,12 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  if (url.origin !== self.location.origin) {
-    if (event.request.destination === 'image') {
-      event.respondWith(
-        caches.match(event.request)
-          .then(respuestaCacheada => {
-            if (respuestaCacheada) {
-              return respuestaCacheada;
-            }
-
-            return fetch(event.request)
-              .then(respuestaRed => {
-                if (!respuestaRed || respuestaRed.status !== 200) {
-                  return respuestaRed;
-                }
-
-                const copiaRespuesta = respuestaRed.clone();
-                caches.open(CACHE_NAME).then(cache => {
-                  cache.put(event.request, copiaRespuesta);
-                });
-
-                return respuestaRed;
-              })
-              .catch(async () => {
-                return caches.match('/feru-store/icons/icon-192.png');
-              });
-          })
-      );
-    }
-
-    return;
-  }
-
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .then(respuestaRed => {
-          if (respuestaRed && respuestaRed.status === 200 && respuestaRed.type === 'basic') {
-            const copiaRespuesta = respuestaRed.clone();
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put('/feru-store/index.html', copiaRespuesta);
-            });
-          }
-          return respuestaRed;
-        })
-        .catch(() => caches.match('/feru-store/index.html'))
-    );
-    return;
-  }
-
-  // Peticiones a APIs: siempre a la red
-  if (event.request.url.includes('/api/')) {
+  // Peticiones a APIs externas: siempre a la red
+  // Modificá esta condición si tu API tiene un dominio distinto
+  if (
+    url.pathname.startsWith('/api') ||
+    url.origin !== self.location.origin
+  ) {
 
     // Para peticiones de API: Network Only
     // Si falla (sin conexión), no intentamos servir desde caché
@@ -130,51 +88,43 @@ self.addEventListener('fetch', event => {
         // Respuesta de error amigable cuando no hay conexión
         return new Response(
           JSON.stringify({ error: 'Sin conexión. Los datos no están disponibles offline.' }),
-          {
-            status: 503,
-            statusText: 'Service Unavailable',
-            headers: { 'Content-Type': 'application/json' }
-          }
+          { headers: { 'Content-Type': 'application/json' } }
         );
       })
     );
     return;
   }
 
-  // Para recursos estáticos same-origin: Network First con fallback a caché
+  // Para recursos estáticos: Cache First
   event.respondWith(
-    fetch(event.request)
-      .then(respuestaRed => {
-        const contentType = respuestaRed.headers.get('content-type') || '';
-        const esScript = event.request.destination === 'script';
-
-        if (!respuestaRed || respuestaRed.status !== 200 || respuestaRed.type !== 'basic') {
-          throw new Error('Respuesta de red no válida');
+    caches.match(event.request)
+      .then(respuestaCacheada => {
+        if (respuestaCacheada) {
+          return respuestaCacheada;
         }
 
-        if (esScript && contentType.includes('text/html')) {
-          throw new Error('Respuesta HTML inválida para script');
-        }
+        // No está en caché: solicitar a la red y guardar
+        return fetch(event.request)
+          .then(respuestaRed => {
+            // Solo cachear respuestas válidas
+            if (!respuestaRed || respuestaRed.status !== 200 ||
+              respuestaRed.type !== 'basic') {
+              return respuestaRed;
+            }
 
-        const copiaRespuesta = respuestaRed.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, copiaRespuesta);
-        });
+            const copiaRespuesta = respuestaRed.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, copiaRespuesta);
+            });
 
-        return respuestaRed;
-      })
-      .catch(() => {
-        return caches.match(event.request).then(respuestaCacheada => {
-          if (respuestaCacheada) {
-            return respuestaCacheada;
-          }
-
-          if (event.request.destination === 'document') {
-            return caches.match('/feru-store/index.html');
-          }
-
-          return Response.error();
-        });
+            return respuestaRed;
+          })
+          .catch(() => {
+            // Sin conexión y sin caché: página de fallback
+            if (event.request.destination === 'document') {
+              return caches.match('/feru-store/index.html');
+            }
+          });
       })
   );
 });
