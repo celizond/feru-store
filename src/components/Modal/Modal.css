@@ -1,0 +1,81 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 200;
+    padding: 0;
+}
+
+.modal-content {
+    background: #ffffff;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px 32px;
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    max-height: 90svh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+}
+
+    .modal-close:hover {
+        background: var(--accent-bg);
+        border-color: var(--accent-border);
+        color: var(--accent);
+    }
+
+/* Modal de confirmacion */
+.confirm-modal {
+    max-width: 400px;
+    padding: 28px 24px 24px;
+    border-radius: 16px;
+}
+
+.confirm-title {
+    font-size: 18px;
+    margin: 0 0 10px;
+    color: var(--text-h);
+}
+
+.confirm-message {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+@media (min-width: 768px) {
+    .modal-overlay {
+        align-items: center;
+    }
+
+    .modal-content {
+        border-radius: 20px;
+        padding: 32px;
+    }
+}
