@@ -72,6 +72,34 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
   if (url.origin !== self.location.origin) {
+    if (event.request.destination === 'image') {
+      event.respondWith(
+        caches.match(event.request)
+          .then(respuestaCacheada => {
+            if (respuestaCacheada) {
+              return respuestaCacheada;
+            }
+
+            return fetch(event.request)
+              .then(respuestaRed => {
+                if (!respuestaRed || respuestaRed.status !== 200) {
+                  return respuestaRed;
+                }
+
+                const copiaRespuesta = respuestaRed.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                  cache.put(event.request, copiaRespuesta);
+                });
+
+                return respuestaRed;
+              })
+              .catch(async () => {
+                return caches.match('/feru-store/icons/icon-192.png');
+              });
+          })
+      );
+    }
+
     return;
   }
 
