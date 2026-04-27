@@ -3,6 +3,7 @@ import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
+    const displayPrice = typeof product?.price === "number" ? product.price.toFixed(2) : "0.00";
 
     return (
         <article className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
@@ -15,7 +16,7 @@ const ProductCard = ({ product }) => {
             <div className="card-info">
                 <h3 className="card-title">{product.title}</h3>
                 <p className="card-category">{product.category}</p>
-                <p className="card-price">${product.price.toFixed(2)}</p>
+                <p className="card-price">${displayPrice}</p>
                 <div className="card-rating">
                     ⭐ {product.rating} · {product.stock} en stock
                 </div>

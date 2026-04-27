@@ -38,6 +38,8 @@ const DetailPage = () => {
         setAddedToWishlist(true);
     };
 
+    const displayPrice = typeof product?.price === "number" ? product.price.toFixed(2) : "0.00";
+
     if (loading) return <Spinner />;
     if (error) return <p className="detail-status">Ha ocurrido un error, vuelva más tarde</p>;
     if (!product) return null;
@@ -72,7 +74,7 @@ const DetailPage = () => {
                     {product.brand && <p className="detail-brand">por {product.brand}</p>}
 
                     <div className="detail-pricing">
-                        <span className="detail-price">${product.price.toFixed(2)}</span>
+                        <span className="detail-price">${displayPrice}</span>
                         {product.discountPercentage > 0 && (
                             <span className="detail-discount">
                                 -{Math.round(product.discountPercentage)}% OFF

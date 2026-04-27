@@ -1,0 +1,26 @@
+{
+  "id": "/feru-store/",
+  "name": "Feru Store",
+  "short_name": "FeruStore",
+  "description": "Tienda de productos de diferentes categorías con búsqueda, historial y favoritos.",
+  "start_url": "/feru-store/",
+  "scope": "/feru-store/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F5F5",
+  "theme_color": "#AA3BFF",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
