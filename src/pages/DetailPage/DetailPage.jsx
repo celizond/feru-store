@@ -14,6 +14,8 @@ const DetailPage = () => {
     const navigate = useNavigate();
     const { addToHistory, isInWishlist, removeFromWishlist } = useAppContext();
 
+    const [selectedImage, setSelectedImage] = useState(null);
+
     const [showForm, setShowForm] = useState(false);
     const [addedToWishlist, setAddedToWishlist] = useState(false);
 
@@ -31,6 +33,8 @@ const DetailPage = () => {
 
         addToHistory(product);
         setAddedToWishlist(isInWishlist(product.id));
+
+        setSelectedImage(null);
     }, [product]);
 
     const handleWishlistSuccess = () => {
@@ -61,13 +65,19 @@ const DetailPage = () => {
                 <div className="detail-gallery">
                     <img
                         className="detail-main-img"
-                        src={product.thumbnail}
+                        src={selectedImage || product.thumbnail}
                         alt={product.title}
                     />
                     {product.images?.length > 1 && (
                         <div className="detail-thumbnails">
                             {product.images.map((img, i) => (
-                                <img key={i} src={img} alt={`${product.title} ${i + 1}`} />
+                                <img
+                                    key={i}
+                                    src={img}
+                                    alt={`${product.title} ${i + 1}`}
+                                    onClick={() => setSelectedImage(img)}
+                                    className={selectedImage === img ? "thumb-active" : ""}
+                                />
                             ))}
                         </div>
                     )}
