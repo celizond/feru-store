@@ -5,6 +5,30 @@
     position: relative;
 }
 
+.heart-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.heart-badge {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background-color: #2E7D32;
+    border: var(--text-h) solid 1px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
 .top-bar {
     min-height: 56px;
     max-height: 56px;
@@ -207,7 +231,10 @@
 
 .nav a.active {
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 400;
+    text-shadow:
+        0 0 10px rgba(58, 16, 86, 0.4),
+        0 0 1px rgba(243, 241, 245, 0.849);
 }
 
 ul {
@@ -235,7 +262,6 @@ button {
         display: block;
         width: calc(100% + 16px);
         margin-inline: -8px;
-        border-top: 1px solid rgba(170, 59, 255, 0.05);
     }
 
     .nav ul {
@@ -244,7 +270,7 @@ button {
         gap: 0;
         width: 100%;
         padding: 0;
-        background-color: rgba(170, 59, 255, 0.08);
+        background-color: #c4bfc4;
     }
 
     .nav li {
