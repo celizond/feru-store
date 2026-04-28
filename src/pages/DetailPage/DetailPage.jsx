@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useState } from "react";
+﻿import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAsync } from "../../hooks/useAsync";
 import { getProductById } from "../../services/product.service";
@@ -15,6 +15,7 @@ const DetailPage = () => {
     const { addToHistory, isInWishlist, removeFromWishlist } = useAppContext();
 
     const [selectedImage, setSelectedImage] = useState(null);
+    const thumbnailsRef = useRef(null);
 
     const [showForm, setShowForm] = useState(false);
     const [addedToWishlist, setAddedToWishlist] = useState(false);
@@ -27,6 +28,17 @@ const DetailPage = () => {
     } = useAsync(fetchProduct, {
         initialData: null,
     });
+
+    useEffect(() => {
+        const el = thumbnailsRef.current;
+        if (!el) return;
+        const handleWheel = (e) => {
+            e.preventDefault();
+            el.scrollLeft += e.deltaY;
+        };
+        el.addEventListener("wheel", handleWheel, { passive: false });
+        return () => el.removeEventListener("wheel", handleWheel);
+    }, [product]);
 
     useEffect(() => {
         if (!product) return;
@@ -69,7 +81,10 @@ const DetailPage = () => {
                         alt={product.title}
                     />
                     {product.images?.length > 1 && (
-                        <div className="detail-thumbnails">
+                        <div
+                            className="detail-thumbnails"
+                            ref={thumbnailsRef}
+                        >
                             {product.images.map((img, i) => (
                                 <img
                                     key={i}

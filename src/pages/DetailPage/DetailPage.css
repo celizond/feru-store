@@ -67,6 +67,7 @@
     overflow-x: auto;
     scrollbar-width: none;
     padding-bottom: 4px;
+    scroll-behavior: smooth;
 }
 
     .detail-thumbnails::-webkit-scrollbar {
