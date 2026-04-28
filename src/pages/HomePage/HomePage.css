@@ -27,18 +27,37 @@
 
 .section-header h2 {
     margin: 0;
+    color: var(--accent-border);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    line-height: 1.25;
+    text-shadow: 0 1px 1px var(--text-h);
 }
 
 .section-link {
     font-size: 13px;
-    color: black;
-    font-weight: 500;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.932);
     text-decoration: none;
     white-space: nowrap;
 }
 
 .section-link:hover {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.section-link:focus-visible {
+    outline: 2px solid var(--text-h);
+    outline-offset: 2px;
+    border-radius: 4px;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 }
 
 .home-grid {
@@ -77,8 +96,21 @@
 
 .titles-bg {
     flex: 1;
-    padding: 8px 12px;
+    position: relative;
+    isolation: isolate;
+    padding: 16px 0;
+}
+
+.titles-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    border: var(--accent-bg) solid 1px;
     background: linear-gradient(90deg, var(--accent-border) 0%, #D5C6E0 100%);
+    z-index: -1;
 }
 
 /* Mobile landscape */
