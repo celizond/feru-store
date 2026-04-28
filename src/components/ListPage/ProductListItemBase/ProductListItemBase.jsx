@@ -21,7 +21,14 @@ const ProductListItemBase = ({ item, infoExtra, rightContent, variant }) => {
                 {infoExtra}
             </div>
 
-            {rightContent}
+            {rightContent && (
+                <div
+                    className="product-list-item__right"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {rightContent}
+                </div>
+            )}
         </article>
     );
 };
