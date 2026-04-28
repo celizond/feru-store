@@ -123,14 +123,14 @@ const DetailPage = () => {
                             onClick={handleRemoveFromWishlist}
                             title="Haz clic para remover de tu lista de deseos"
                         >
-                            <HeartIcon width={14} height={14} active={true} color={"#2e7d32"} /> Ya está en tu lista de deseos
+                            <HeartIcon width={14} height={14} active={true} fillColor={"#2e7d32"} strokeColor={"#2e7d32"} /> Ya está en tu lista de deseos
                         </button>
                     ) : (
                         product.stock > 0 ?
                             <Button
                                 onClick={() => setShowForm(true)}
                             >
-                                <HeartIcon width={14} height={14} color={"#AA3BFF" }/> Agregar a lista de deseos
+                                <HeartIcon width={14} height={14} fillColor={"#AA3BFF"}/> Agregar a lista de deseos
                             </Button>
                             :
                             <Button

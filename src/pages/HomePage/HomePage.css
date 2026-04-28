@@ -36,11 +36,11 @@
 }
 
 .section-link {
-    font-size: 13px;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.2px;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.932);
+    font-size: 14px;
+    color: var(--accent-border);
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    text-shadow: 0 1px 1px var(--text-h);
     text-decoration: none;
     white-space: nowrap;
 }
