@@ -1,25 +1,27 @@
-/* src/components/Footer/Footer.css */
-
 .footer {
     background: #5539612b;
     border-top: 1px solid var(--border);
-    margin-top: auto;
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 36px 16px 24px;
     display: flex;
+    text-align: center;
     flex-direction: column;
     gap: 28px;
 }
 
-/* Marca */
+.footer-part {
+    min-width: 30%;
+}
+
 .footer-brand {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    text-align: center;
 }
 
 .footer-logo {
@@ -30,13 +32,13 @@
 }
 
 .footer-tagline {
-    text-align: left;
+    text-align: center;
     font-size: 13px;
+    line-height: 1.45;
     color: var(--text);
     margin: 0;
 }
 
-/* Nav y info */
 .footer-nav,
 .footer-info {
     display: flex;
@@ -45,7 +47,7 @@
 }
 
 .footer-nav-title {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--text-h);
     text-transform: uppercase;
@@ -95,6 +97,7 @@
 
     .footer-bottom p {
         font-size: 12px;
+        text-align: center;
         color: var(--text);
         opacity: 0.7;
         margin: 0;

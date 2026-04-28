@@ -1,33 +1,38 @@
 ﻿import { NavLink } from "react-router-dom";
+import { NAV_LINKS } from "../../constants/navigation.constants";
 import "./Footer.css";
 
 const Footer = () => {
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className="footer">
             <div className="footer-container">
 
-                <div className="footer-brand">
+                <div className="footer-brand footer-part">
                     <span className="footer-logo">FERU STORE</span>
                     <p className="footer-tagline">
-                        Encontrá lo que necesitás, cuando lo necesitás.
+                        Encontrá lo que necesitás,
+                        <br />
+                        cuando lo necesitás.
                     </p>
                 </div>
 
-                <nav className="footer-nav">
+                <nav className="footer-nav footer-part">
                     <h3 className="footer-nav-title">Navegación</h3>
                     <ul>
-                        <li><NavLink to="/">Inicio</NavLink></li>
-                        <li><NavLink to="/search">Buscar productos</NavLink></li>
-                        <li><NavLink to="/wishlist">Lista de deseos</NavLink></li>
-                        <li><NavLink to="/history">Historial</NavLink></li>
-                        <li><NavLink to="/contact">Contacto</NavLink></li>
+                        {NAV_LINKS.map((link) => (
+                            <li key={link.to}>
+                                <NavLink to={link.to}>{link.label}</NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
 
-                <div className="footer-info">
+                <div className="footer-info footer-part">
                     <h3 className="footer-nav-title">Estudio</h3>
                     <ul>
-                        <li>📍 La Plata, Buenos Aires</li>
+                        <li>La Plata, Buenos Aires</li>
                         <li>
                             <a href="mailto:contacto@ferustore.com">
                                 contacto@ferustore.com
@@ -40,7 +45,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p>© {new Date().getFullYear()} Feru Store. Todos los derechos reservados.</p>
+                <p>© {currentYear} Feru Store. Todos los derechos reservados.</p>
             </div>
         </footer>
     );
