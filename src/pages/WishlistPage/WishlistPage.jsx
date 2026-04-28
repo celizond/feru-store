@@ -13,12 +13,17 @@ const WishlistPage = () => {
     const { wishlist, removeFromWishlist, clearWishlist } = useAppContext();
     const navigate = useNavigate();
     const [showConfirm, setShowConfirm] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
 
     const handleClearWishlist = () => {
         clearWishlist();
         setShowConfirm(false);
     };
 
+    const handleConfirmDelete = () => {
+        removeFromWishlist(itemToDelete.id);
+        setItemToDelete(null);
+    };
 
     if (wishlist.length === 0) {
         return (
@@ -78,7 +83,7 @@ const WishlistPage = () => {
                                     className="wishlist-remove"
                                     onClick={(event) => {
                                         event.stopPropagation();
-                                        removeFromWishlist(item.id);
+                                        setItemToDelete(item);
                                     }}
                                     aria-label="Eliminar de lista de deseos"
                                 >
@@ -99,7 +104,15 @@ const WishlistPage = () => {
                     onCancel={() => setShowConfirm(false)}
                 />
             )}
-
+            {itemToDelete && (
+                <ConfirmModal
+                    title="Eliminar producto"
+                    message={`¿Querés eliminar "${itemToDelete.title}" de tu lista de deseos?`}
+                    confirmText="Sí, eliminar"
+                    onConfirm={handleConfirmDelete}
+                    onCancel={() => setItemToDelete(null)}
+                />
+            )}
         </div>
     );
 };
