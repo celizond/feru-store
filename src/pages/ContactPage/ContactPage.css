@@ -1,4 +1,3 @@
-
 .contact-container {
     display: flex;
     flex-direction: column;
@@ -9,8 +8,6 @@
     width: 100%;
     box-sizing: border-box;
 }
-
-/* Info del estudio */
 
 .contact-tagline {
     text-align: left;
@@ -28,22 +25,21 @@
 .map-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* ratio 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 16px;
     border: 1px solid var(--border);
 }
 
-    .map-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
+.map-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
 @media (min-width: 768px) {
     .contact-container {
@@ -52,7 +48,7 @@
         flex-direction: row;
     }
 
-    .contact-container > * {
+    .contact-container>* {
         flex: 1 1 0;
     }
 }

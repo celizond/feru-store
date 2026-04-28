@@ -1,11 +1,6 @@
 import { HashRouter , Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
-import HomePage from "../pages/HomePage/HomePage";
-import SearchPage from "../pages/SearchPage/SearchPage";
-import DetailPage from "../pages/DetailPage/DetailPage";
-import WishlistPage from "../pages/WishlistPage/WishlistPage";
-import HistoryPage from "../pages/HistoryPage/HistoryPage";
-import ContactPage from "../pages/ContactPage/ContactPage";
+import { ContactPage, DetailPage, HistoryPage, HomePage, SearchPage, WishlistPage } from "../pages";
 
 const AppRouter = () => {
   return (

@@ -1,6 +1,5 @@
 import PageTitle from "../../Text/PageTitle/PageTitle";
 
-
 const SearchHeader = ({ currentQuery }) => {
     return currentQuery ? (
         <section aria-labelledby="search-title-results">

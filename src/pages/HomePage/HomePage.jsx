@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useHomeProducts } from "../../hooks/useHomeProducts";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
-import "./HomePage.css";
 import Spinner from "../../components/Spinner/Spinner";
+import "./HomePage.css";
 
 const HomePage = () => {
     const { history, wishlist } = useAppContext();

@@ -10,7 +10,6 @@
     font-size: 15px;
 }
 
-/* Secciones */
 .home-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -113,7 +112,6 @@
     z-index: -1;
 }
 
-/* Mobile landscape */
 @media (min-width: 480px) {
     .home-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -121,7 +119,6 @@
     }
 }
 
-/* Tablet */
 @media (min-width: 768px) {
 
     .home-grid {
@@ -133,7 +130,6 @@
     }
 }
 
-/* Desktop */
 @media (min-width: 1024px) {
     .home-grid {
         grid-template-columns: repeat(4, 1fr);

@@ -1,14 +1,13 @@
 ﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
-import "./HistoryPage.css";
 import PageTitle from "../../components/Text/PageTitle/PageTitle";
 import ListEmptyState from "../../components/ListPage/ListEmptyState/ListEmptyState";
 import ListCount from "../../components/ListPage/ListCount/ListCount";
 import ProductListItemBase from "../../components/ListPage/ProductListItemBase/ProductListItemBase";
 import Button from "../../components/Button/Button";
 import ConfirmModal from "../../components/Modal/ConfirmModal/ConfirmModal";
-
+import "./HistoryPage.css";
 
 const HistoryPage = () => {
     const { history, clearHistory } = useAppContext();

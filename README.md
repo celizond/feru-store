@@ -1,16 +1,17 @@
-# React + Vite
+# EQUIPO
+Federico Diaz - Casandra Elizondo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## DESCRIPCIÓN
+Realizamos un e-commerce llamado Feru Store, que se integra con la api dummyjson (https://dummyjson.com/). Tiene una home con las mejores ofertas, es decir, productos con mayor descuento, y puede visualizar el historial de productos visitados y recomendados a partir de lo elegido en la wishlist, todos estos estan limitados a 8 elementos para su visualización. Además la aplicación cuenta con una busqueda simple y con filtros, una lista de deseados que pueden agregarse desde el detalle de los productos, y una página de contacto.
 
-Currently, two official plugins are available:
+## TECNOLOGÍAS
+Creamos el proyecto con react + vite y utilizamos react router para la navegación, context api para manejar y agrupar el estado global de favoritos e historial manejados por local storage. Además, generamos el PWA basándonos en la documentacipón de la cátedra, adaptandola un poco para el uso con react.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ARQUITECTURA
+Usamos una arquitectura modular por capas en una SPA (Single Page Application). Separamos responsabilidades para mantener un código más ordenado 
 
-## React Compiler
+## DEPLOY
+Dejamos el proyecto subido a github pages en https://celizond.github.io/feru-store/#/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## LOCAL
+para correrlo local simplemente hay que agregar el .env (se puede basar en el .env.example, de todas maneras en el service está la url por defecto, por ser de manejo nuestro) y luego ejecutar npm install y npm run dev.

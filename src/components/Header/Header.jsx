@@ -67,7 +67,7 @@ const Header = () => {
             <NavLink to="/wishlist" aria-label="Lista de deseos">
               <HeartIcon active={wishlist.length > 0} fillColor={"#AA3BFF"} />
             </NavLink>
-            {wishlist.length > 1 && (
+            {wishlist.length > 0 && (
               <span className="heart-badge">{wishlist.length > 9 ? "+9" : wishlist.length}</span>
             )}
           </div>

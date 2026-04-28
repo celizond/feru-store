@@ -1,5 +1,3 @@
-/* src/pages/Detail/Detail.css */
-
 .detail-page {
     padding: 0 16px 48px;
     max-width: 1200px;
@@ -33,20 +31,18 @@
     transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-    .back-btn:hover {
-        background: var(--accent-bg);
-        border-color: var(--accent-border);
-        color: var(--accent);
-    }
+.back-btn:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-border);
+    color: var(--accent);
+}
 
-/* Layout principal */
 .detail-container {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-/* Galer�a */
 .detail-gallery {
     display: flex;
     flex-direction: column;
@@ -70,30 +66,29 @@
     scroll-behavior: smooth;
 }
 
-    .detail-thumbnails::-webkit-scrollbar {
-        display: none;
-    }
+.detail-thumbnails::-webkit-scrollbar {
+    display: none;
+}
 
-    .detail-thumbnails img {
-        width: 64px;
-        height: 64px;
-        object-fit: cover;
-        border-radius: 8px;
-        border: 2px solid var(--border);
-        cursor: pointer;
-        flex-shrink: 0;
-        transition: border-color 0.2s ease;
-    }
+.detail-thumbnails img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease;
+}
 
-        .detail-thumbnails img:hover {
-            border-color: var(--accent);
-        }
+.detail-thumbnails img:hover {
+    border-color: var(--accent);
+}
 
-        .detail-thumbnails img.thumb-active {
-            border-color: var(--accent);
-        }
+.detail-thumbnails img.thumb-active {
+    border-color: var(--accent);
+}
 
-/* Info */
 .detail-info {
     display: flex;
     flex-direction: column;
@@ -163,7 +158,6 @@
     margin: 4px 0;
 }
 
-/* Meta info */
 .detail-meta {
     display: flex;
     flex-direction: column;
@@ -173,14 +167,14 @@
     padding: 14px;
 }
 
-    .detail-meta p {
-        font-size: 13px;
-        color: var(--text);
-    }
+.detail-meta p {
+    font-size: 13px;
+    color: var(--text);
+}
 
-    .detail-meta strong {
-        color: var(--text-h);
-    }
+.detail-meta strong {
+    color: var(--text-h);
+}
 
 .in-stock {
     color: #2e7d32;
@@ -212,16 +206,15 @@
     box-shadow: 0 2px 8px rgba(46, 125, 50, 0.15);
 }
 
-/* Reviews */
 .detail-reviews {
     margin-top: 40px;
     border-top: 1px solid var(--border);
     padding-top: 24px;
 }
 
-    .detail-reviews h2 {
-        margin-bottom: 16px;
-    }
+.detail-reviews h2 {
+    margin-bottom: 16px;
+}
 
 .review-card {
     background: #ffffff;
@@ -240,15 +233,15 @@
     align-items: center;
 }
 
-    .review-header strong {
-        font-size: 14px;
-        color: var(--text-h);
-    }
+.review-header strong {
+    font-size: 14px;
+    color: var(--text-h);
+}
 
-    .review-header span {
-        font-size: 13px;
-        color: var(--text);
-    }
+.review-header span {
+    font-size: 13px;
+    color: var(--text);
+}
 
 .review-card p {
     font-size: 13px;
@@ -262,7 +255,6 @@
     opacity: 0.7;
 }
 
-/* Modal */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -302,13 +294,12 @@
     color: var(--text);
 }
 
-    .modal-close:hover {
-        background: var(--accent-bg);
-        border-color: var(--accent-border);
-        color: var(--accent);
-    }
+.modal-close:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-border);
+    color: var(--accent);
+}
 
-/* Tablet y desktop */
 @media (min-width: 768px) {
     .detail-container {
         flex-direction: row;
