@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { CrossIcon, HeartIcon, MenuIcon, SearchIcon } from "../../assets/icons";
 import { NAV_LINKS } from "../../constants/navigation.constants";
+import { useAppContext } from "../../context/AppContext";
 import logoFeru from "../../assets/logoFeru.png";
 import "./Header.css";
 
@@ -11,6 +12,7 @@ const Header = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
+  const { wishlist } = useAppContext();
   const [openMenu, setOpenMenu] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -62,7 +64,7 @@ const Header = () => {
 
         <div className="header-functions">
           <NavLink to="/wishlist" aria-label="Lista de deseos">
-            <HeartIcon />
+            <HeartIcon active={wishlist.length > 0} fillColor={"#AA3BFF"} />
           </NavLink>
           <div className="menu-wrap" ref={menuRef}>
             <button

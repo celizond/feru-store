@@ -112,6 +112,11 @@
     display: block;
 }
 
+.icon-btn:hover {
+    cursor:pointer;
+    background-color: var(--accent-border);
+}
+
 .menu-btn {
     display: inline-flex;
     align-items: center;
